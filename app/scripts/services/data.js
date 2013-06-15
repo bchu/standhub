@@ -35,7 +35,7 @@ angular.module('standhubApp')
 
 
     data.requestsUrl = data.fireUrl + 'requests';
-    data.requests = angularFireCollection(new Firebase(requestUrl));
+    // data.requests = angularFireCollection(new Firebase(data.requestsUrl));
 
     return data;
   }]);
