@@ -2,12 +2,12 @@
 
 angular.module('standhubApp')
   .controller('LoginCtrl', ['$scope', 'firebase', function ($scope) {
-    
+
     $scope.facebookLogin = function() {
       $scope.authClient.login('facebook', {rememberMe:true});
     };
     $scope.addSkills = function(skills) {
-      $scope.
+      // $scope.
     };
     $scope.emailLogin = function(email, password) {
       authClient.login('password', {
