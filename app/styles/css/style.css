@@ -2864,7 +2864,7 @@ ul.messagesList li span.date {
 }
 .message .header .from {
   /*display: inline-block;*/
-  width: 70%;
+  /*width: 70%;*/
   /*font-size: 12px;*/
 }
 .message .header .date {
@@ -3130,4 +3130,19 @@ ul.messagesList li span.date {
 .login-box .remember {
   margin-top: 20px;
   float: left;
+}
+
+
+
+
+
+.header ul {
+  list-style-type: none !important;
+  margin: 0;
+}
+.header ul .menu {
+  margin: 10px;
+}
+.header ul li {
+  margin-bottom: 10px;
 }
