@@ -7,6 +7,7 @@ angular.module('standhubApp')
       $scope.authClient.login('facebook', {rememberMe:true});
     };
     $scope.addSkills = function(skills) {
+      var skillsRef = new Firebase();
       // $scope.
     };
     $scope.emailLogin = function(email, password) {

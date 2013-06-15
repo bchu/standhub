@@ -5,6 +5,7 @@ angular.module('standhubApp')
     $scope.fireUrl = 'https://standhubdev.firebaseio.com/';
     $scope.firebase = new Firebase($scope.fireUrl);
     $scope.user = {};
+    $scope.userRef;
     $scope.authClient = new FirebaseAuthClient($scope.firebase, function(error, user) {
       if (error) {
         // an error occurred while attempting login
@@ -16,6 +17,11 @@ angular.module('standhubApp')
         $scope.user = null;
       }
     });
+    // $scope.authTest = function() {
+    //   $scope.authClient.login('facebook', {rememberMe:true});
+    // };
+
+
 
 
 
