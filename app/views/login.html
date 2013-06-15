@@ -1,34 +1,18 @@
-<!-- <div class="container-fluid-full"> -->
-<!-- <div class="row-fluid"> -->
-
-  <div class="row-fluid">
-    <div class="login-box">
-      <h2>Login to your account</h2>
-      <form class="form-horizontal" action="index.html" method="post">
-        <fieldset>
-
-          <input class="input-large span12" name="username" id="username" type="text" placeholder="type username"/>
-
-          <input class="input-large span12" name="password" id="password" type="password" placeholder="type password"/>
-
-          <div class="clearfix"></div>
-
-          <label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
-
-          <div class="clearfix"></div>
-
-          <button type="submit" class="btn btn-primary span12">Login</button>
-
-
-      </form>
-      <hr>
-      <h3>Forgot Password?</h3>
-      <p>
-        No problem, <a href="#">click here</a> to get a new password.
-      </p>
-    </div><!--/span-->
-  </div><!--/row-->
-
-    <!-- </div>/fluid-row -->
-
-<!-- </div>/.fluid-container -->
+<div modal="shouldBeOpen" close="close()" options="opts">
+    <div class="modal-header">
+        <h4>Login</h4>
+    </div>
+    <div class="modal-body">
+      <center>
+        <button class="btn btn-large btn-primary">Facebook</button>
+      </center>
+        <ul>
+            <li ng-repeat="tag in tags">
+              {{tag}}
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+    </div>
+</div>
