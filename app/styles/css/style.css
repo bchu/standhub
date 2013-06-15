@@ -909,6 +909,7 @@ div.uploader {
   padding: 3px 6px;
   border: none;
   text-shadow: none;
+  margin-left: 8px;
 }
 .label {
   -webkit-border-radius: 2px;
@@ -2862,13 +2863,13 @@ ul.messagesList li span.date {
   margin-top: 1px;
 }
 .message .header .from {
-  display: inline-block;
+  /*display: inline-block;*/
   width: 70%;
-  font-size: 12px;
+  /*font-size: 12px;*/
 }
 .message .header .date {
   display: inline-block;
-  width: 29%;
+  /*width: 29%;*/
   text-align: right;
   float: right;
   font-size: 12px;
