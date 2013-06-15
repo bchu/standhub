@@ -306,7 +306,7 @@ a.brand {
   padding: 10px 0px !important;
 }
 a.brand span {
-  font-family: 'Kaushan Script', cursive;
+  /*font-family: 'Kaushan Script', cursive;*/
   color: #fff;
   text-shadow: none;
 }
