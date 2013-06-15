@@ -1,7 +1,7 @@
 /*
 * Author: Łukasz Holeczek
 * Template: SimpliQ - Flat & Responsive Bootstrap Admin Template
-* Version: 1.0.1 
+* Version: 1.0.1
 * Bootstrap version: 2.3.2
 * Copyright 2013 creativeLabs
 * www: http://clabs.co
@@ -154,7 +154,7 @@ h6 {
 }
 /* Typography - Blockquote
 =================================================================== */blockquote {
-  background: url(../img/quote.png) no-repeat 0px 10px;
+  background: url(../../../../images/img/quote.png) no-repeat 0px 10px;
   font-style: italic;
   border-left: none;
   padding: 0 0 0 30px;
@@ -1465,7 +1465,7 @@ footer a {
   top: 15px;
   left: -20px;
   position: absolute;
-  background: url("../img/disc-arrow.png") no-repeat;
+  background: url("../../../../images/img/disc-arrow.png") no-repeat;
   background-size: 20px 20px;
 }
 .discussions ul li .author {
@@ -2059,7 +2059,7 @@ ul.tickets li.ticket .number {
   outline: none !important;
 }
 .ui-slider-horizontal .ui-slider-handle {
-  background: url("../img/handle.png") no-repeat center center scroll #ffffff !important;
+  background: url("../../../../images/img/handle.png") no-repeat center center scroll #ffffff !important;
   background-position: 50% 50%;
   background-size: 16px 16px !important;
   width: 36px;
@@ -2113,7 +2113,7 @@ ul.tickets li.ticket .number {
   margin-top: -38px;
 }
 .sliderVertical .ui-slider-handle {
-  background: url("../img/handlev.png") no-repeat center center scroll #ffffff !important;
+  background: url("../../../../images/img/handlev.png") no-repeat center center scroll #ffffff !important;
   background-position: 50% 50%;
   background-size: 16px 16px !important;
   width: 18px;
@@ -3047,7 +3047,7 @@ ul.messagesList li span.date {
   right: 0px;
   height: 20px;
   width: 20px;
-  background: url(../img/timeline-left-arrow.png) no-repeat;
+  background: url(../../../../images/img/timeline-left-arrow.png) no-repeat;
 }
 .timeslot .icon {
   position: absolute;
@@ -3090,7 +3090,7 @@ ul.messagesList li span.date {
   left: 0px;
   height: 20px;
   width: 20px;
-  background: url(../img/timeline-right-arrow.png) no-repeat;
+  background: url(../../../../images/img/timeline-right-arrow.png) no-repeat;
 }
 .timeslot.alt .time {
   top: 1px;
