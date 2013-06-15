@@ -2,11 +2,9 @@
 
 angular.module('standhubApp')
   .controller('Login', ['$scope', 'firebase', function ($scope) {
-    // authClient.login('<provider>');
-    // authClient.logout();
     
     $scope.facebookLogin = function() {
-      authClient.login('facebook', {rememberMe:true});
+      $scope.authClient.login('facebook', {rememberMe:true});
     };
     $scope.emailLogin = function(email, password) {
       authClient.login('password', {
@@ -16,14 +14,14 @@ angular.module('standhubApp')
       });
     };
     $scope.emailCreate = function(email,password) {
-      authClient.createUser(email, password, function(error, user) {
+      $scope.authClient.createUser(email, password, function(error, user) {
         if (!error) {
           console.log('User Id: ' + user.id + ', Email: ' + user.email);
         }
       });
     };
     $scope.logout = function() {
-      authClient.logout();
+      $scope.authClient.logout();
     };
 
   }]);
