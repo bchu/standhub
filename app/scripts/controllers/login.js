@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('standhubApp')
-  .controller('Login', ['$scope', 'firebase', function ($scope) {
+  .controller('LoginCtrl', ['$scope', 'firebase', function ($scope) {
     
     $scope.facebookLogin = function() {
       $scope.authClient.login('facebook', {rememberMe:true});
