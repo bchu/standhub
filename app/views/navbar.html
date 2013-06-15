@@ -1,0 +1,55 @@
+    <!-- start: Header -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="row-fluid">
+        <a class="brand span2" href="index.html"><span>StandHub</span></a>
+        </div>
+        <!-- start: Header Menu -->
+        <div class="nav-no-collapse header-nav">
+          <ul class="nav pull-right">
+
+            <!-- start: User Dropdown -->
+            <li>
+                <div class="avatar"><img src="http://placekitten.com/g/600/600" alt="Avatar"></div>
+                <div class="user">
+                  <span class="hello">Welcome!</span>
+                  <div ng-controller="LoginCtrl">
+                      <button class="btn btn-info btn-setting" ng-click="open()">Sign in / Sign up</button>
+                      <!-- <button class="btn" ng-click="open()">Open me!</button> -->
+                      <div modal="shouldBeOpen" close="close()" options="opts">
+                          <div class="modal-header">
+                              <h4>Login</h4>
+                          </div>
+                          <div class="modal-body">
+                            <center>
+                              <button class="btn btn-large btn-primary">Facebook</button>
+                            </center>
+                              <ul>
+                                  <li ng-repeat="tag in tags">
+                                    {{tag}}
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="modal-footer">
+                              <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                          </div>
+                      </div>
+                  </div>
+
+
+                  </span>
+              </div>
+              </li>
+            <!-- end: User Dropdown -->
+          </ul>
+        </div>
+        <!-- end: Header Menu -->
+      </div>
+    </div>
+  </div>

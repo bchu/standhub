@@ -1,7 +1,7 @@
 /*
 * Author: Łukasz Holeczek
 * Template: SimpliQ - Flat & Responsive Bootstrap Admin Template
-* Version: 1.0.1 
+* Version: 1.0.1
 * Bootstrap version: 2.3.2
 * Copyright 2013 creativeLabs
 * www: http://clabs.co
@@ -21,7 +21,7 @@
   }
   .container-fluid-full {
     overflow: hidden;
-    position: relative;
+    /*position: relative;*/
     height: 100%;
   }
   .container-fluid-full #content {
@@ -53,7 +53,7 @@
   }
   .container-fluid-full {
     overflow: hidden;
-    position: relative;
+    /*position: relative;*/
     height: 100%;
   }
   .container-fluid-full #content {
@@ -129,7 +129,7 @@
   }
   .container-fluid-full {
     overflow: hidden;
-    position: relative;
+    /*position: relative;*/
     height: 100%;
   }
   .container-fluid-full #content {
