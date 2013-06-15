@@ -15,7 +15,7 @@ module.exports = function (grunt) {
   };
 
   try {
-    yeomanConfig.app = require('./component.json').appPath || yeomanConfig.app;
+    yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
   } catch (e) {}
 
   grunt.initConfig({
@@ -91,6 +91,7 @@ module.exports = function (grunt) {
     },
     jshint: {
       options: {
+        force:true,
         jshintrc: '.jshintrc'
       },
       all: [
@@ -270,10 +271,12 @@ module.exports = function (grunt) {
     'connect:livereload',
     'open',
     'watch'
+
   ]);
 
   grunt.registerTask('test', [
     'clean:server',
+    'jshint',
     'coffee',
     'compass',
     'connect:test',
@@ -282,8 +285,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'jshint',
-    'test',
     'coffee',
     'compass:dist',
     'useminPrepare',

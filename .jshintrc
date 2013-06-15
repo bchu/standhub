@@ -1,6 +1,7 @@
 {
   "node": true,
   "browser": true,
+  "jquery":true,
   "es5": true,
   "esnext": true,
   "bitwise": true,
@@ -12,14 +13,24 @@
   "latedef": true,
   "newcap": true,
   "noarg": true,
-  "quotmark": "single",
   "regexp": true,
   "undef": true,
   "unused": true,
-  "strict": true,
-  "trailing": true,
+  "strict": false,
+  "trailing": false,
+  "white": false,
   "smarttabs": true,
+  "validthis":true,
   "globals": {
-    "angular": false
+    "angular": true,
+    "define": true,
+    "require": true,
+    "describe":true,
+    "beforeEach":true,
+    "it":true,
+    "inject":true,
+    "jQuery":true,
+    "Modernizr":true,
+    "moment":true
   }
 }
