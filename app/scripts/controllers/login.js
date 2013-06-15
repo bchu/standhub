@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('standhubApp')
-  .controller('LoginCtrl', ['$scope', function ($scope) {
+  .controller('LoginCtrl', ['$scope', 'Data', function ($scope, Data) {
 
     $scope.facebookLogin = function() {
-      $scope.authClient.login('facebook', {rememberMe:true});
+      Data.authClient.login('facebook', {rememberMe:true});
     };
     $scope.addSkills = function(skills) {
-      var skillsRef = new Firebase();
-      // $scope.
+      //skills should be an array
+      Data.userRef.child('skills').set(skills);
     };
 
-    
+    $scope.test = function() {
+      debugger;
+    }
+
+
     // $scope.emailLogin = function(email, password) {
     //   authClient.login('password', {
     //     email: email,
@@ -28,7 +32,7 @@ angular.module('standhubApp')
     // };
 
     $scope.logout = function() {
-      $scope.authClient.logout();
+      Data.authClient.logout();
     };
 
     $scope.skills = ['Angular.JS', 'Backbone.js'];

@@ -12,15 +12,13 @@ angular.module('standhubApp')
     //   };
     // });
 
-    var requestUrl = $scope.fireUrl + 'helprequests';
-    var requests = angularFireCollection(new Firebase(requestUrl));
     $scope.submitRequest = function(skills,comment) {
       var targets = [];
-        $scope.messages.add({
-          from: $scope.user.id,
-          skill: skills||[],
-          comment: comment||'',
-          targets: targets
-        });
+      $scope.messages.add({
+        from: $scope.user.id,
+        skill: skills||[],
+        comment: comment||'',
+        targets: targets
+      });
       };
   }]);
