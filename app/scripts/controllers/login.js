@@ -6,6 +6,9 @@ angular.module('standhubApp')
     $scope.facebookLogin = function() {
       $scope.authClient.login('facebook', {rememberMe:true});
     };
+    $scope.addSkills = function(skills) {
+      
+    };
     $scope.emailLogin = function(email, password) {
       authClient.login('password', {
         email: email,
