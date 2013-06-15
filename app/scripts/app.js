@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('standhubApp', ['ui.bootstrap'])
+angular.module('standhubApp', ['firebase', 'ui.bootstrap'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
