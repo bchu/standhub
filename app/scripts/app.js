@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('standhubApp', [])
+angular.module('standhubApp', ['ui.bootstrap'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
