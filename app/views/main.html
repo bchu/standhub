@@ -7,92 +7,12 @@
         <div class="span7">
           <center><h1>Status</h1></center>
 
-          <ul class="messagesList">
-
-            <li>
-              <span class="from"><span class="glyphicons star"><i></i></span> gdi2290 <span class="glyphicons paperclip"><i></i></span></span><span class="title"><span class="label label-warning">problem</span> Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons star"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title"><span class="label label-success">task</span> Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons star"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons star"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons star"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek <span class="glyphicons paperclip"><i></i></span></span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-            <li>
-              <span class="from"><span class="glyphicons dislikes"><i></i></span> Lukasz Holeczek</span><span class="title">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</span><span class="date">Today, <b>3:47 PM</b></span>
-            </li>
-
-
-
-          </ul>
+          <div ng-include=" '/views/statuses.html' "></div>
 
         </div>
         <div class="span5 message-view">
 
-          <div class="message">
-
-            <div class="header">
-              <h1>Request</h1>
-              <div class="from"><i class="halflings-icon user"></i> <b>Lukasz Holeczek</b> / lukasz@holeczek.pl</div>
-              <div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
-
-              <div class="menu"></div>
-
-            </div>
-
-            <div class="content">
-            </div>
-
-
-            <form class="replyForm"method="post" action="">
-
-              <fieldset>
-                <textarea tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
-
-                <div class="actions">
-
-                  <button tabindex="3" type="submit" class="btn btn-success">Send message</button>
-
-                </div>
-
-              </fieldset>
-
-            </form>
-
-          </div>
+          <div ng-include=" '/views/request.html' "></div>
 
         </div>
 
