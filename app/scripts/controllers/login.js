@@ -10,32 +10,26 @@ angular.module('standhubApp')
       var skillsRef = new Firebase();
       // $scope.
     };
-    $scope.emailLogin = function(email, password) {
-      authClient.login('password', {
-        email: email,
-        password: password,
-        rememberMe:true
-      });
-    };
-    $scope.emailCreate = function(email,password) {
-      $scope.authClient.createUser(email, password, function(error, user) {
-        if (!error) {
-          console.log('User Id: ' + user.id + ', Email: ' + user.email);
-        }
-      });
-    };
+
+    
+    // $scope.emailLogin = function(email, password) {
+    //   authClient.login('password', {
+    //     email: email,
+    //     password: password,
+    //     rememberMe:true
+    //   });
+    // };
+    // $scope.emailCreate = function(email,password) {
+    //   $scope.authClient.createUser(email, password, function(error, user) {
+    //     if (!error) {
+    //       console.log('User Id: ' + user.id + ', Email: ' + user.email);
+    //     }
+    //   });
+    // };
+
     $scope.logout = function() {
       $scope.authClient.logout();
     };
-
-    // $scope.open = function () {
-    //   $scope.shouldBeOpen = true;
-    // };
-
-    // $scope.close = function () {
-    //   $scope.closeMsg = 'I was closed at: ' + new Date();
-    //   $scope.shouldBeOpen = false;
-    // };
 
     $scope.skills = ['Angular.JS', 'Backbone.js'];
 
@@ -43,5 +37,11 @@ angular.module('standhubApp')
     $scope.opts = {
       backdropFade: true,
       dialogFade:true
+    };
+    $scope.open = function () {
+      $scope.shouldBeOpen = true;
+    };
+    $scope.close = function () {
+      $scope.shouldBeOpen = false;
     };
   }]);
