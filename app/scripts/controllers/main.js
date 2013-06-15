@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('standhubApp', ['firebase'])
-  .controller('MainCtrl', ['$scope', 'firebase', 'angularFire', function ($scope, angularFire) {
+angular.module('standhubApp')
+  .controller('MainCtrl', ['$scope', 'firebase', 'angularFire', function ($scope) {
     $scope.firebase = new Firebase("https://standhubdev.firebaseio.com");
     $scope.authClient = new FirebaseAuthClient($scope.firebase, function(error, user) {
       if (error) {
