@@ -15,28 +15,37 @@
           <ul class="nav pull-right">
 
             <!-- start: User Dropdown -->
-            <li class="dropdown">
-              <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+            <li>
                 <div class="avatar"><img src="../images/img/avatar.jpg" alt="Avatar"></div>
                 <div class="user">
                   <span class="hello">Welcome!</span>
-                  <span class="name" ng-controller="LoginCtrl">
-                    <button class="btn btn-info btn-setting" ng-click="open()">Sign in / Sign up</button>
+                  <div ng-controller="LoginCtrl">
+                      <button class="btn btn-info btn-setting" ng-click="open()">Sign in / Sign up</button>
+                      <!-- <button class="btn" ng-click="open()">Open me!</button> -->
+                      <div modal="shouldBeOpen" close="close()" options="opts">
+                          <div class="modal-header">
+                              <h4>Login</h4>
+                          </div>
+                          <div class="modal-body">
+                            <center>
+                              <button class="btn btn-large btn-primary">Facebook</button>
+                            </center>
+                              <ul>
+                                  <li ng-repeat="tag in tags">
+                                    {{tag}}
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="modal-footer">
+                              <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+                          </div>
+                      </div>
+                  </div>
 
 
                   </span>
-                </div>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-menu-title">
-
-                </li>
-                <li><a href="#"><i class="icon-user"></i> Profile</a></li>
-                <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                <li><a href="#"><i class="icon-envelope"></i> Messages</a></li>
-                <li><a href="login.html"><i class="icon-off"></i> Logout</a></li>
-              </ul>
-            </li>
+              </div>
+              </li>
             <!-- end: User Dropdown -->
           </ul>
         </div>
@@ -44,7 +53,6 @@
       </div>
     </div>
   </div>
-
 
 <div class="container-fluid-full">
 
