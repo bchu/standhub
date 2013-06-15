@@ -31,6 +31,7 @@
     "inject":true,
     "jQuery":true,
     "Modernizr":true,
-    "moment":true
+    "moment":true,
+    "Firebase":true
   }
 }
