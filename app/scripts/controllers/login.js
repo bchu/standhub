@@ -28,17 +28,18 @@ angular.module('standhubApp')
       $scope.authClient.logout();
     };
 
-    $scope.open = function () {
-      $scope.shouldBeOpen = true;
-    };
+    // $scope.open = function () {
+    //   $scope.shouldBeOpen = true;
+    // };
 
-    $scope.close = function () {
-      $scope.closeMsg = 'I was closed at: ' + new Date();
-      $scope.shouldBeOpen = false;
-    };
+    // $scope.close = function () {
+    //   $scope.closeMsg = 'I was closed at: ' + new Date();
+    //   $scope.shouldBeOpen = false;
+    // };
 
-    $scope.tags = ['Angular.JS', 'Backbone.js'];
+    $scope.skills = ['Angular.JS', 'Backbone.js'];
 
+    //ui customization
     $scope.opts = {
       backdropFade: true,
       dialogFade:true
