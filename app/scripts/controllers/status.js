@@ -17,7 +17,6 @@ angular.module('standhubApp')
     };
     $scope.close = function () {
       if ($scope.shouldBeOpen) {
-        console.log('close');
         $scope.shouldBeOpen = false;
       }
     };
