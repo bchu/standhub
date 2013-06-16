@@ -12,12 +12,17 @@
                       name="status"
                       rows="5"
                       value=""
+                      ng-model="userStatus"
                       placeholder="Post your status">
             </textarea>
           </div>
           <div class="actions">
-
-            <button tabindex="3" type="submit" class="btn btn-success">Send message</button>
+            <button tabindex="3"
+                    type="submit"
+                    class="btn btn-success"
+                    ng-click="submitStatus()"
+                    autofocus>
+                    Send message</button>
 
           </div>
 
