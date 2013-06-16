@@ -25,9 +25,11 @@ angular.module('standhubApp')
     };
 
     $scope.addTags = function(tags) {
-      //tags should be an array
+      if (!tags) {
+        return;
+      }
       tags = _.pluck(tags,'text');
-      Data.userRef.child('tags').set($scope.tags);
+      Data.userRef.child('tags').set(tags);
     };
 
     $scope.logout = function() {
