@@ -44,13 +44,13 @@ angular.module('standhubApp')
     // });
     //HELP REQUESTS
     data.addRequest = function(obj) {
-      obj.from = data.user.$id;
+      obj.from = data.user.id;
       obj.utc_timestamp = new Date().getTime();
       //find experts to match with and then push data to server
       var targets = [];
       _.each(data.users, function(user) {
         if (_.contains(user.tags,obj.tag)) {
-          targets.push({userId:user.$id,response:null});
+          targets.push({userId:user.id,response:null});
         }
         if (targets.length >=3) {
           return false;
@@ -70,12 +70,12 @@ angular.module('standhubApp')
         }
         var reqData = snapshot.val();
         var targeted = _.any(reqData.targets,function(el) {
-          return el.userId === data.user.$id;
+          return el.userId === data.user.id;
         });
         if (targeted) {
           data.requestsToYou.push(reqData);
         }
-        else if(reqData.from === data.user.$id) {
+        else if(reqData.from === data.user.id) {
           data.requestsFromYou.push(reqData);
         }
       });
@@ -85,10 +85,10 @@ angular.module('standhubApp')
     //     return;
     //   }
     //   var reqData = snapshot.val();
-    //   if (_.contains(data.targets,data.user.$id)) {
+    //   if (_.contains(data.targets,data.user.id)) {
     //     data.requestsToYou.push(data);
     //   }
-    //   else if(data.from === data.user.$id) {
+    //   else if(data.from === data.user.id) {
     //     data.requestsFromYou.push(data);
     //   }
     // });
