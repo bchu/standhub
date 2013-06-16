@@ -17,7 +17,7 @@ angular.module('standhubApp')
     $scope.tagOptions = {
       tags:["AngularJS", "JavaScript","Objective-C", "iOS","Unix","Pitch decks"],
       tokenSeparators: [",",";"]
-    }
+    };
 
     $scope.facebookLogin = function() {
       Data.authClient.login('facebook', {rememberMe:true});

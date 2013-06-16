@@ -2,15 +2,12 @@
 
 angular.module('standhubApp')
   .controller('HelpCtrl', ['$scope', 'Data', function ($scope, Data) {
-    // var url = $scope.fireUrl + 'helpReqs';
-    // var promise = angularFire(url, $scope, 'helpReqs', []);
 
-    // promise.then(function() {
-    //   // Or, attach a function to $scope that will let a directive in markup manipulate the model.
-    //   $scope.removeItem = function() {
-    //     // $scope.items.
-    //   };
-    // });
+    $scope.tagOptions = {
+      tags:["AngularJS", "JavaScript","Objective-C", "iOS","Unix","Pitch decks"],
+      tokenSeparators: [",",";"],
+      maximumSelectionSize:1
+    };
 
     $scope.submitRequest = function(tag,comment) {
       //Data will add 'targets','date',and 'from'

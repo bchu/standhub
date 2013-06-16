@@ -1,29 +1,36 @@
-<div class="box-header">
-  <h2><i class=" icon-phone"></i>Request</h2>
-  <div class="box-icon">
+<div ng-controller="HelpCtrl">
+  <div class="box-header">
+    <h2><i class=" icon-phone"></i>Request</h2>
+    <div class="box-icon">
+    </div>
   </div>
-</div>
-<div class="box-content">
+  <div class="box-content">
 
-  <form class="replyForm"method="post" action="">
-          <span class="label">Angular.js</span>
-          <span class="label">Backbone.js</span>
-          <span class="label">Backbone.js</span>
-          <span class="label">Backbone.js</span>
-          <span class="label">Backbone.js</span>
-          <span class="label">Startups</span>
+    <form class="replyForm"method="post" action="">
+      <label for="tag">Request help with:</label>
+              <textarea id="tag"
+                    rows="1"
+                    ui-select2="tagOptions"
+                    ng-model="tag"></textarea>
+            <!-- <span class="label">Angular.js</span>
+            <span class="label">Backbone.js</span>
+            <span class="label">Backbone.js</span>
+            <span class="label">Backbone.js</span>
+            <span class="label">Backbone.js</span>
+            <span class="label">Startups</span>
+   -->
+      <fieldset>
+        <label for="comment">Comment:</label>
+        <textarea tabindex="3" class="input-xlarge span12" id="comment" ng-model="comment" name="body" rows="12" placeholder="Click here to reply"></textarea>
 
-    <fieldset>
-      <textarea tabindex="3" class="input-xlarge span12" id="message" name="body" rows="12" placeholder="Click here to reply"></textarea>
+        <div class="actions">
 
-      <div class="actions">
+          <button tabindex="3" type="submit" ng-click="submitRequest(tag,comment)" class="btn btn-success">Send message</button>
 
-        <button tabindex="3" type="submit" class="btn btn-success">Send message</button>
+        </div>
 
-      </div>
+      </fieldset>
 
-    </fieldset>
-
-  </form>
-
+    </form>
+  </div>
 </div>

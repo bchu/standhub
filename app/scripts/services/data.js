@@ -9,7 +9,7 @@ angular.module('standhubApp')
     data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
     data.user;
     data.userRef;
-    var listRef = new Firebase(data.fireUrl + 'users');
+    // var listRef = new Firebase(data.fireUrl + 'users');
 
     //store list of all usernames
     data.users = angularFireCollection(data.userUrl);
