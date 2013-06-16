@@ -9,6 +9,7 @@ angular.module('standhubApp')
     data.user;
     data.userRef;
     data.userUrl = data.fireUrl + 'users/';
+    var usersRef = new Firebase(data.userUrl);
     data.users = angularFireCollection(data.userUrl);
     var requestsUrl = data.fireUrl + 'requests';
     data.requests = angularFireCollection(requestsUrl);
@@ -36,6 +37,56 @@ angular.module('standhubApp')
     // data.forEachUser(function(user) {
     //   data.allUsernames[user.id] = true;
     // });
+    //HELP REQUESTS
+    data.addRequest = function(obj) {
+      obj.from = data.user.$id;
+      obj.utc_timestamp = new Date().getTime();
+      //find experts to match with and then push data to server
+      var targets = [];
+      _.each(data.users, function(user) {
+        if (_.contains(user.tags,obj.tag)) {
+          targets.push({userId:user.$id,response:null});
+        }
+        if (targets.length >=3) {
+          return false;
+        }
+      });
+      obj.targets = targets;
+      data.requests.add(obj);
+    };
+
+    //ALERTS:
+    data.requestsFromYou = [];
+    data.requestsToYou = [];
+    var refreshRequests  = function() {
+      requestsRef.on('child_added', function(snapshot) {
+        if (!data.user) {
+          return;
+        }
+        var reqData = snapshot.val();
+        var targeted = _.any(reqData.targets,function(el) {
+          return el.userId === data.user.$id;
+        });
+        if (targeted) {
+          data.requestsToYou.push(reqData);
+        }
+        else if(reqData.from === data.user.$id) {
+          data.requestsFromYou.push(reqData);
+        }
+      });
+    };
+    // requestsRef.on('child_changed', function(snapshot) {
+    //   if (!data.user) {
+    //     return;
+    //   }
+    //   var reqData = snapshot.val();
+    //   if (_.contains(data.targets,data.user.$id)) {
+    //     data.requestsToYou.push(data);
+    //   }
+    //   else if(data.from === data.user.$id) {
+    //     data.requestsFromYou.push(data);
+    //   }
+    // });
 
     data.userKeyFromId = function(userid) {
       for (var i = 0; i < data.users.length; i++) {
@@ -59,6 +110,7 @@ angular.module('standhubApp')
             data.user.$id = userKey;
             data.userRef = new Firebase(data.userUrl);
             $rootScope.$apply(); //needed for digest to update after FB popup
+            refreshRequests();
         };
         if (!userKey) { //facebook id
           data.users.add(user, function() {
@@ -76,53 +128,6 @@ angular.module('standhubApp')
     });
     //for dev purposes (disable auto-login)
     data.authClient.logout();
-
-
-    //HELP REQUESTS
-    data.addRequest = function(obj) {
-      obj.from = data.user.$id;
-      obj.utc_timestamp = new Date().getTime();
-      //find experts to match with and then push data to server
-      var targets = [];
-      _.each(data.users, function(user) {
-        if (_.contains(user.tags,obj.tag)) {
-          targets.push({user_id:user.$id,response:null});
-        }
-        if (targets.length >=3) {
-          return false;
-        }
-      });
-      obj.targets = targets;
-      data.requests.add(obj);
-    };
-
-    //ALERTS:
-    data.requestsFromYou = [];
-    data.requestsToYou = [];
-    requestsRef.on('child_added', function(snapshot) {
-      if (!data.user) {
-        return;
-      }
-      var reqData = snapshot.val();
-      if (_.contains(data.targets,data.user.$id)) {
-        data.requestsToYou.push(data);
-      }
-      else if(data.from === data.user.$id) {
-        data.requestsFromYou.push(data);
-      }
-    });
-    // requestsRef.on('child_changed', function(snapshot) {
-    //   if (!data.user) {
-    //     return;
-    //   }
-    //   var reqData = snapshot.val();
-    //   if (_.contains(data.targets,data.user.$id)) {
-    //     data.requestsToYou.push(data);
-    //   }
-    //   else if(data.from === data.user.$id) {
-    //     data.requestsFromYou.push(data);
-    //   }
-    // });
 
 
     return data;
