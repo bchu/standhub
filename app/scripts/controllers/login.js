@@ -13,6 +13,12 @@ angular.module('standhubApp')
       }
     });
 
+    //options for tag field
+    $scope.tagOptions = {
+      tags:["AngularJS", "JavaScript","Objective-C", "iOS","Unix","Pitch decks"],
+      tokenSeparators: [",",";"]
+    }
+
     $scope.facebookLogin = function() {
       Data.authClient.login('facebook', {rememberMe:true});
       $scope.loggedIn = 'pending';
@@ -20,33 +26,16 @@ angular.module('standhubApp')
 
     $scope.addTags = function(tags) {
       //tags should be an array
-      Data.userRef.child('tags').set(tags);
+      Data.userRef.child('tags').set($scope.tags);
     };
 
     $scope.test = function() {
       debugger;
     }
 
-    // $scope.emailLogin = function(email, password) {
-    //   authClient.login('password', {
-    //     email: email,
-    //     password: password,
-    //     rememberMe:true
-    //   });
-    // };
-    // $scope.emailCreate = function(email,password) {
-    //   $scope.authClient.createUser(email, password, function(error, user) {
-    //     if (!error) {
-    //       console.log('User Id: ' + user.id + ', Email: ' + user.email);
-    //     }
-    //   });
-    // };
-
     $scope.logout = function() {
       Data.authClient.logout();
     };
-
-    $scope.tags = ['Angular.JS', 'Backbone.js'];
 
     //ui customization
     $scope.opts = {

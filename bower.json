@@ -10,7 +10,8 @@
     "angular-sanitize": "latest",
     "jquery":"latest",
     "angular-bootstrap": "latest",
-    "angular-fire":"latest"
+    "angular-fire":"latest",
+    "angular-ui-select2": "latest"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.5",
