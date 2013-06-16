@@ -13,13 +13,11 @@ angular.module('standhubApp')
       function() {return Data.requestsFromYou;},
       function(requestsFromYou) {
         $scope.requestsFromYou = requestsFromYou;
-        // debugger;
     }, true);
 
     var callback = function() {
       var d = Data;
       console.log(d);
-      // console.log($scope);
       $timeout(callback, 3000);
     };
     $timeout(callback, 3000);
