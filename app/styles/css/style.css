@@ -3175,3 +3175,9 @@ ul.messagesList li span.date {
   height: 40px;
   width: 40px;
 }
+.box .box-header .box-icon i {
+  font-size: 22px;
+  display: inline-block;
+  padding: 5px;
+  border: 0px;
+}
