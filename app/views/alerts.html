@@ -10,17 +10,17 @@
       <li ng-repeat="request in requestsToYou">
         <div class="from">
           <i class="halflings-icon user"></i> <b>{{request.from | username}}</b>
-          <div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
+          <div class="date"><i class="halflings-icon time" style="margin-top: 2px;margin-right: 5px;"></i><small class="date" am-time-ago="user.timestamp"></small></div>
           <div class="menu" style="width:75%"> <!-- Tags -->
-           needs help with <span class="label label-important">{{request.tag}}</span>
+           needs help with<span class="label label-important">{{request.tag}}</span>
+            <div class="pull-right" style="margin-top: 0px;margin-right: -83px;">
+              <button class="btn btn-small" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
+              <br>
+              <button class="btn btn-small" style="margin:2px;"><i class="icon-remove"></i> Cancel</button>
+            </div>
            <div>
             {{request.comment}}
            </div>
-          </div>
-          <div class="pull-right" style="margin-top: -50px">
-            <button class="btn btn-small" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
-            <br>
-            <button class="btn btn-small" style="margin:2px;"><i class="icon-remove"></i> Cancel</button>
           </div>
         </div>
       </li>
