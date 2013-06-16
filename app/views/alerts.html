@@ -15,7 +15,7 @@
             {{request.comment}}
            </dd>
           <div ng-show="true" class="menu" style="margin-top:8px;"> <!-- Tags -->
-            <button ng-click="accept(request)" class="btn" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
+            <button ng-click="accept(request);clicked='success'" class="btn btn-{{ clicked }}" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
             <button ng-click="decline(request)" class="btn" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
           </div>
         </div>
