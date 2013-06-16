@@ -27,10 +27,13 @@
       <li ng-repeat="request in requestsFromYou">
         <div class="from">
           <i class="halflings-icon user"></i> <b>Your request for help with:</b><span class="label label-important">{{request.tag}}</span>
+           <div>
+            {{request.comment}}
+           </div>
           <div class="date"><i class="halflings-icon time"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
           <ul>
-            <li ng-repeat="(key,value) in request.targets">
-              {{target}}
+            <li ng-repeat="(userId,response) in request.targets">
+              {{userId | username}}, {{response}}
             </li>
           </ul>
             <button class="btn btn-small" ng-click="cancel(request)"><i class="icon-remove"></i> Cancel</button>
