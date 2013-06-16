@@ -4,11 +4,9 @@ angular.module('standhubApp')
   .controller('StatusCtrl', ['$scope', 'Data', function ($scope, Data) {
     $scope.userStatus = '';
     $scope.submitStatus = function(userStatus) {
-      if (Data.userRef) {
-        Data.userRef.child('status').set(userStatus);
-        Data.userRef.child('timestamp').set(new Date());
-        $scope.close();
-      }
+      Data.userRef.child('status').set(userStatus);
+      Data.userRef.child('timestamp').set(new Date());
+      $scope.close();
     };
 
     //ui customization:
