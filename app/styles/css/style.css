@@ -3144,7 +3144,7 @@ ul.messagesList li span.date {
   margin: 0;
 }
 .box-content ul .menu {
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
 }
 .box-content ul li {
   margin-bottom: 10px;
