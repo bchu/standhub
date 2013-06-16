@@ -3213,3 +3213,8 @@ ul.messagesList li span.date {
 .slide-leave-start {
   top:200px;
 }
+@media only screen and (max-width: 479px) {
+  .navbar .brand {
+    width: 20%;
+  }
+}
