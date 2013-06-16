@@ -47,7 +47,7 @@ angular.module('standhubApp')
       var targets = {};
       var count = 0;
       _.each(data.users, function(user) {
-        if (_.contains(user.tags,obj.tag)) {
+        if (_.contains(user.tags,obj.tag) && user.id !== data.user.id) {
           // targets.push({userId:user.id,response:null});
           targets[user.id] = 'pending'; //response, firebase doesn't like it if it's null
           count++;
@@ -91,22 +91,30 @@ angular.module('standhubApp')
         }
       });
       data.refreshRequestsRef.on('child_changed', function(snapshot) {
-        // if (!data.user) {
-        //   return;
-        // }
-        // var reqData = snapshot.val();
-        // // var targeted = _.any(reqData.targets,function(el) {
-        // //   return el.userId === data.user.id;
-        // // });
-        // if (reqData.targets && reqData.targets[data.user.id]===null) {
-        //   data.requestsToYou.push(reqData);
-        // }
-        // else if(reqData.from === data.user.id) {
-        //   data.requestsFromYou.push(reqData);
-        // }
+        var refName = snapshot.name();
+        for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
+          if (data.requestsFromYou[i].refName === refName) {
+            data.requestsFromYou.targets = snapshot.targets;
+          }
+        }
+        for (var i = data.requestsToYou.length-1; i >=0 ; i--) {
+          if (data.requestsToYou[i].refName === refName) {
+            data.requestsToYou.targets = snapshot.targets;
+          }
+        }
       });
       data.refreshRequestsRef.on('child_removed', function(oldSnapshot) {
-        // data.refreshRequests();
+        var refName = oldSnapshot.name();
+        for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
+          if (data.requestsFromYou[i].refName === refName) {
+            data.requestsFromYou.splice(i,1);
+          }
+        }
+        for (var i = data.requestsToYou.length-1; i >=0 ; i--) {
+          if (data.requestsToYou[i].refName === refName) {
+            data.requestsToYou.splice(i,1);
+          }
+        }
       });
     };
     // refreshRequestsRef.on('child_changed', function(snapshot) {
