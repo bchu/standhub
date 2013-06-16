@@ -113,6 +113,7 @@ angular.module('standhubApp')
             refreshRequests();
         };
         if (!userKey) { //facebook id
+          debugger;
           data.users.add(user, function() {
             userKey = data.userKeyFromId(user.id);
             ending();
@@ -124,6 +125,7 @@ angular.module('standhubApp')
       } else {
         data.user = undefined;
         data.userRef = undefined;
+        data.userUrl = data.fireUrl + 'users/';
       }
     });
     //for dev purposes (disable auto-login)
