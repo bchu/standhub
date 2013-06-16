@@ -48,19 +48,27 @@ angular.module('standhubApp')
 
     //handle auth
     data.authClient = new FirebaseAuthClient(new Firebase(data.fireUrl), function(error, user) {
-      console.log('auth service active');
       if (error) {
         // an error occurred while attempting login
         console.log(error);
       } else if (user) {
         data.user = user;
         var userKey = data.userKeyFromId(user.id);
+        var ending = function() {
+            data.userUrl += userKey;
+            data.user.$id = userKey;
+            data.userRef = new Firebase(data.userUrl);
+            $rootScope.$apply(); //needed for digest to update after FB popup
+        };
         if (!userKey) { //facebook id
-          data.users.add(user);
+          data.users.add(user, function() {
+            userKey = data.userKeyFromId(user.id);
+            ending();
+          });
         }
-        data.userUrl += userKey;
-        data.userRef = new Firebase(data.userUrl);
-        $rootScope.$apply(); //needed for digest to update after FB popup
+        else {
+          ending();
+        }
       } else {
         data.user = undefined;
         data.userRef = undefined;
@@ -89,20 +97,32 @@ angular.module('standhubApp')
     };
 
     //ALERTS:
-    data.responses = [];
+    data.requestsFromYou = [];
     data.requestsToYou = [];
     requestsRef.on('child_added', function(snapshot) {
-      if (!data || !data.user) {
+      if (!data.user) {
         return;
       }
-      var data = snapshot.val();
+      var reqData = snapshot.val();
       if (_.contains(data.targets,data.user.$id)) {
         data.requestsToYou.push(data);
       }
       else if(data.from === data.user.$id) {
-        // if (data.targets)
+        data.requestsFromYou.push(data);
       }
     });
+    // requestsRef.on('child_changed', function(snapshot) {
+    //   if (!data.user) {
+    //     return;
+    //   }
+    //   var reqData = snapshot.val();
+    //   if (_.contains(data.targets,data.user.$id)) {
+    //     data.requestsToYou.push(data);
+    //   }
+    //   else if(data.from === data.user.$id) {
+    //     data.requestsFromYou.push(data);
+    //   }
+    // });
 
 
     return data;
