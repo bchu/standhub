@@ -117,18 +117,6 @@ angular.module('standhubApp')
         }
       });
     };
-    // refreshRequestsRef.on('child_changed', function(snapshot) {
-    //   if (!data.user) {
-    //     return;
-    //   }
-    //   var reqData = snapshot.val();
-    //   if (_.contains(data.targets,data.user.id)) { //usehash
-    //     data.requestsToYou.push(data);
-    //   }
-    //   else if(data.from === data.user.id) {
-    //     data.requestsFromYou.push(data);
-    //   }
-    // });
 
     data.userFromId = function(userid) {
       for (var i = 0; i < data.users.length; i++) {
