@@ -5,6 +5,7 @@ angular.module('standhubApp')
     $scope.userStatus = '';
     $scope.submitStatus = function(userStatus) {
       Data.userRef.child('status').set(userStatus);
+      Data.userRef.child('timestamp').set(new Date());
       $scope.close();
     };
 

@@ -16,10 +16,15 @@
 
             <!-- start: User Dropdown -->
             <li>
-                <!-- <div class="avatar" ng-model="userphoto"><img src="https://graph.facebook.com/gdi2290/picture?type=normal" alt="Avatar"></div> -->
+                <div class="avatar"
+                      ng-model="userphoto">
+                <img ng-src="https://graph.facebook.com/gdi2290/picture?type=normal"
+                     alt="Avatar">
+                </div>
                 <div class="user">
                   <!-- <span class="hello">Welcome!</span> -->
                   <div ng-controller="LoginCtrl">
+
                       <button class="btn btn-info btn-setting"
                               style="margin-top: 10px;"
                               ng-click="open()"
