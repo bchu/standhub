@@ -12,12 +12,10 @@
           <i class="halflings-icon user"></i> <b>{{request.from | username}}</b>
           <div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
           <div class="menu"> <!-- Tags -->
-            <span class="label label-important">Angular.js</span>
-            <span class="label label-info">Backbone.js</span>
-            <span class="label label-info">Backbone.js</span>
-            <span class="label label-info">Backbone.js</span>
-            <span class="label label-info">Backbone.js</span>
-            <span class="label label">Startups</span>
+           needs help with <span class="label label-important">{{request.tag}}</span>
+           <div>
+            {{request.comment}}
+           </div>
           </div>
             <button class="btn btn-small"><i class="icon-ok"></i> Accept</button>
             <button class="btn btn-small"><i class="icon-remove"></i> Cancel</button>
