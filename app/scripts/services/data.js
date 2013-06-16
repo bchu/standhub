@@ -111,28 +111,37 @@ angular.module('standhubApp')
         data.user = user;
         var oldUser = data.userFromId(user.id);
         var ending = function() {
-            data.userUrl += oldUser.id;
-            data.userRef = new Firebase(data.userUrl);
-            $rootScope.$apply(); //needed for digest to update after FB popup
-            data.tags = data.user.tags || [];
-            refreshRequests();
-            data.users = [];
-            data.users = angularFireCollection(data.fireUrl + 'users/');
-            var refreshUserRef = function() {
-              var refreshedUser = data.userFromId(user.id);
-              if (refreshedUser) {
-                data.user = refreshedUser;
-              }
-              else {
-                $timeout(refreshUserRef, 200);
-              }
-            };
-            $timeout(refreshUserRef, 200);
+          data.userUrl += oldUser.id;
+          data.userRef = new Firebase(data.userUrl);
+          $rootScope.$apply(); //needed for digest to update after FB popup
+          data.tags = data.user.tags || [];
+          refreshRequests();
+          // var refreshUserRef = function() {
+          //   var refreshedUser = data.userFromId(user.id);
+          //   if (refreshedUser) {
+          //     data.user = refreshedUser;
+          //   }
+          //   else {
+          //     $timeout(refreshUserRef, 200);
+          //   }
+          // };
+          // $timeout(refreshUserRef, 200);
         };
         if (!oldUser) {
-          usersRef.child(user.id).update(user, function() {
+          // var query = usersRef.startAt(null, user.id).endAt(null,user.id);
+          //   query.on('child_added', function(child) {
+          //     debugger;
+          //     var status = child.val().status;
+          //     if (status !== undefined) {
+          //       usersRef.child(user.id).update({status:status});
+          //     }
+          // });
+          usersRef.child(user.id).transaction(function(currentValue) {
+            currentValue = currentValue || {};
+            var obj = _.assign(currentValue,user);
+            return obj;
+            }, function() {
             oldUser = data.userFromId(user.id);
-            // debugger;
             ending();
           });
         }
