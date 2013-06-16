@@ -2958,7 +2958,7 @@ ul.messagesList li span.date {
 }
 .task .desc {
   display: inline-block;
-  width: 75%;
+  /*width: 75%;*/
   padding: 10px 10px;
   font-size: 12px;
 }
@@ -3149,6 +3149,7 @@ ul.messagesList li span.date {
 }
 
 .task .desc {
+  margin-left: 40px;
   font-size: 16px;
 }
 
@@ -3159,4 +3160,12 @@ ul.messagesList li span.date {
 #post_status input[placeholder], [placeholder], *[placeholder] {
   color: black !important;
 }
-
+.status.avatar {
+  position: absolute;
+  float: left;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  border-radius: 50em;
+  height: 40px;
+  width: 40px;
+}
