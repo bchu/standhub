@@ -101,7 +101,7 @@
     text-align: right;
   }
   .task .time .date {
-    font-size: 16px;
+    /*font-size: 16px;*/
     margin-bottom: 5px;
   }
   ul.messages-list li a .date {
@@ -197,7 +197,7 @@
     display: inline-block;
     /*width: 65%;*/
     padding: 10px 10px;
-    font-size: 10px;
+    font-size: 14px;
     margin-right: -20px;
   }
   .task .desc .title {
@@ -312,7 +312,7 @@
     display: inline-block;
     /*width: 65%;*/
     padding: 10px 10px;
-    font-size: 10px;
+    /*font-size: 10px;*/
     margin-right: -20px;
   }
   .task .desc .title {
@@ -328,7 +328,7 @@
     text-align: right;
   }
   .task .time .date {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 5px;
   }
   .timeslot .task span {
