@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('standhubApp')
-  .factory('Data', ['angularFire', 'angularFireCollection', '$rootScope', function(angularFire, angularFireCollection, $rootScope) {
+  .factory('Data', ['angularFire', 'angularFireCollection', '$rootScope', '$timeout', function(angularFire, angularFireCollection, $rootScope, $timeout) {
     var data = {};
 
     // data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
@@ -15,6 +15,11 @@ angular.module('standhubApp')
     data.requests = angularFireCollection(requestsUrl);
     var requestsRef = new Firebase(requestsUrl);
 
+    data.tags = [];
+
+    usersRef.on('child_changed', function(childSnapshot, prevChildName) {
+      // debugger;
+    });
     // var listRef = new Firebase(data.fireUrl + 'users');
     // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
     // promise.then(function() {
@@ -88,10 +93,10 @@ angular.module('standhubApp')
     //   }
     // });
 
-    data.userKeyFromId = function(userid) {
+    data.userFromId = function(userid) {
       for (var i = 0; i < data.users.length; i++) {
         if (userid === data.users[i].id) {
-          return data.users[i].$id;
+          return data.users[i];
         }
       }
       return false;
@@ -104,17 +109,30 @@ angular.module('standhubApp')
         console.log(error);
       } else if (user) {
         data.user = user;
-        var userKey = data.userKeyFromId(user.id);
+        var oldUser = data.userFromId(user.id);
         var ending = function() {
-            data.userUrl += userKey;
-            data.user.$id = userKey;
+            data.userUrl += oldUser.id;
             data.userRef = new Firebase(data.userUrl);
             $rootScope.$apply(); //needed for digest to update after FB popup
+            data.tags = data.user.tags || [];
             refreshRequests();
+            data.users = [];
+            data.users = angularFireCollection(data.fireUrl + 'users/');
+            var refreshUserRef = function() {
+              var refreshedUser = data.userFromId(user.id);
+              if (refreshedUser) {
+                data.user = refreshedUser;
+              }
+              else {
+                $timeout(refreshUserRef, 200);
+              }
+            };
+            $timeout(refreshUserRef, 200);
         };
-        if (!userKey) { //facebook id
-          data.users.add(user, function() {
-            userKey = data.userKeyFromId(user.id);
+        if (!oldUser) {
+          usersRef.child(user.id).update(user, function() {
+            oldUser = data.userFromId(user.id);
+            // debugger;
             ending();
           });
         }
@@ -127,10 +145,9 @@ angular.module('standhubApp')
         data.userUrl = data.fireUrl + 'users/';
         data.requestsFromYou = [];
         data.requestsToYou = [];
+        data.tags = [];
       }
     });
-    //for dev purposes (disable auto-login)
-    data.authClient.logout();
 
 
     return data;
