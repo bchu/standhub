@@ -89,20 +89,32 @@ angular.module('standhubApp')
     };
 
     //ALERTS:
-    data.responses = [];
+    data.requestsFromYou = [];
     data.requestsToYou = [];
     requestsRef.on('child_added', function(snapshot) {
-      if (!data || !data.user) {
+      if (!data.user) {
         return;
       }
-      var data = snapshot.val();
+      var reqData = snapshot.val();
       if (_.contains(data.targets,data.user.$id)) {
         data.requestsToYou.push(data);
       }
       else if(data.from === data.user.$id) {
-        // if (data.targets)
+        data.requestsFromYou.push(data);
       }
     });
+    // requestsRef.on('child_changed', function(snapshot) {
+    //   if (!data.user) {
+    //     return;
+    //   }
+    //   var reqData = snapshot.val();
+    //   if (_.contains(data.targets,data.user.$id)) {
+    //     data.requestsToYou.push(data);
+    //   }
+    //   else if(data.from === data.user.$id) {
+    //     data.requestsFromYou.push(data);
+    //   }
+    // });
 
 
     return data;
