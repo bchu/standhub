@@ -13,6 +13,7 @@ angular.module('standhubApp')
       function() {return Data.requestsFromYou;},
       function(requestsFromYou) {
         $scope.requestsFromYou = requestsFromYou;
+        // debugger;
     }, true);
 
     var callback = function() {

@@ -63,11 +63,15 @@ angular.module('standhubApp')
     //ALERTS:
     data.requestsFromYou = [];
     data.requestsToYou = [];
+    data.refreshRequestsRef = new Firebase(data.requestsUrl);
     data.refreshRequests  = function() {
+      console.log('refresh requests');
       data.requestsFromYou = [];
       data.requestsToYou = [];
-      var refreshRequestsRef = new Firebase(data.requestsUrl);
-      refreshRequestsRef.on('child_added', function(snapshot) {
+      data.refreshRequestsRef.off();
+      data.refreshRequestsRef = new Firebase(data.requestsUrl);
+      data.refreshRequestsRef.on('child_added', function(snapshot) {
+        console.log('fired!!!!');
         if (!data.user) {
           return;
         }
@@ -77,7 +81,7 @@ angular.module('standhubApp')
         // var targeted = _.any(reqData.targets,function(el) {
         //   return el.userId === data.user.id;
         // });
-        if (reqData.targets && typeof reqData.targets[data.user.id]==='string') {
+        if (reqData.targets && typeof reqData.targets[data.user.id]==='string' && reqData.from !== data.user.id) {
           if (reqData.targets[data.user.id]!=='decline') {
             data.requestsToYou.push(reqData);
           } 
@@ -86,7 +90,7 @@ angular.module('standhubApp')
           data.requestsFromYou.push(reqData);
         }
       });
-      refreshRequestsRef.on('child_changed', function(snapshot) {
+      data.refreshRequestsRef.on('child_changed', function(snapshot) {
         // if (!data.user) {
         //   return;
         // }
@@ -101,7 +105,7 @@ angular.module('standhubApp')
         //   data.requestsFromYou.push(reqData);
         // }
       });
-      refreshRequestsRef.on('child_removed', function(oldSnapshot) {
+      data.refreshRequestsRef.on('child_removed', function(oldSnapshot) {
         // data.refreshRequests();
       });
     };
