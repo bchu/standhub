@@ -45,7 +45,6 @@ angular.module('standhubApp')
       $scope.shouldBeOpen = true;
     };
     $scope.close = function (tags) {
-      $scope.addTags(tags);
       $scope.shouldBeOpen = false;
     };
   }]);
