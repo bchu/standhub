@@ -4,16 +4,22 @@
     </div>
     <div class="modal-body">
       <form>
-          <!-- <fieldset> -->
          <div ng-switch on="loggedIn" >
           <button ng-switch-when="false" ng-click="facebookLogin()" class="btn btn-large btn-primary">Login With Facebook</button>
           <span ng-switch-when="pending">Logging in...</span>
           <span ng-switch-when="true">Welcome {{user.name}}. Now add your skills:</span>
         </div>
         <br>
+          <fieldset>
+            <form>
         <label for="tags">Skills</label>
-        <textarea id="tags" rows="3" ui-select2="tagOptions" ng-model="tags" data-placeholder=""></textarea>
-          <!-- </fieldset> -->
+        <textarea id="tags"
+                  rows="8"
+                  ui-select2="tagOptions"
+                  ng-model="tags"
+                  data-placeholder=""></textarea>
+      </form>
+          </fieldset>
       </form>
     </div>
     <div class="modal-footer">
