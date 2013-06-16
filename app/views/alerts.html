@@ -11,14 +11,17 @@
         <div class="from">
           <i class="halflings-icon user"></i> <b>{{request.from | username}}</b>
           <div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
-          <div class="menu"> <!-- Tags -->
+          <div class="menu" style="width:75%"> <!-- Tags -->
            needs help with <span class="label label-important">{{request.tag}}</span>
            <div>
             {{request.comment}}
            </div>
           </div>
-            <button class="btn btn-small"><i class="icon-ok"></i> Accept</button>
-            <button class="btn btn-small"><i class="icon-remove"></i> Cancel</button>
+          <div class="pull-right" style="margin-top: -50px">
+            <button class="btn btn-small" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
+            <br>
+            <button class="btn btn-small" style="margin:2px;"><i class="icon-remove"></i> Cancel</button>
+          </div>
         </div>
       </li>
 
