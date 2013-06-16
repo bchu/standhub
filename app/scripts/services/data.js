@@ -17,9 +17,6 @@ angular.module('standhubApp')
 
     data.tags = [];
 
-    usersRef.on('child_changed', function(childSnapshot, prevChildName) {
-      // debugger;
-    });
     // var listRef = new Firebase(data.fireUrl + 'users');
     // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
     // promise.then(function() {
