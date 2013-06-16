@@ -254,7 +254,10 @@ module.exports = function (grunt) {
             '.htaccess',
             'components/**/*',
             'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*'
+            'images/{,*/}*',
+            'styles/font/*',
+            'styles/fonts/*',
+            'styles/img/*'
           ]
         }]
       }
@@ -288,7 +291,7 @@ module.exports = function (grunt) {
     'coffee',
     'compass:dist',
     'useminPrepare',
-    'imagemin',
+    // 'imagemin',
     'cssmin',
     'htmlmin',
     'concat',
@@ -296,7 +299,7 @@ module.exports = function (grunt) {
     'cdnify',
     'ngmin',
     'uglify',
-    'rev',
+    // 'rev',
     'usemin'
   ]);
 
