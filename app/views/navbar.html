@@ -2,11 +2,6 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
         <div class="row-fluid">
         <a class="brand span2" href="index.html"><span>StandHub</span></a>
         </div>
@@ -16,13 +11,13 @@
 
             <!-- start: User Dropdown -->
             <li>
-                <div class="avatar">
-                <img  ng-src="https://graph.facebook.com/gdi2290/picture?type=normal"
-                     alt="Avatar">
-                </div>
                 <div class="user">
                   <!-- <span class="hello">Welcome!</span> -->
                   <div ng-controller="LoginCtrl">
+                    <div class="avatar-nav avatar">
+                    <img  ng-show="loggedIn" ng-src="https://graph.facebook.com/{{user.username}}/picture?type=normal"
+                         alt="Avatar">
+                    </div>
 
                       <button class="btn btn-info btn-setting"
                               style="margin-top: 10px;"
