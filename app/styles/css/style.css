@@ -3219,7 +3219,6 @@ ul.messagesList li span.date {
   }
 }
 label {
-  display:none;
   margin: 10px 10px 10px 0;
 }
 .label-accept {
