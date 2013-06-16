@@ -18,7 +18,7 @@ angular.module('standhubApp')
     var callback = function() {
       var d = Data;
       console.log(d);
-      console.log($scope);
+      // console.log($scope);
       $timeout(callback, 3000);
     };
     $timeout(callback, 3000);
@@ -36,6 +36,13 @@ angular.module('standhubApp')
       var url = Data.requestsUrl + request.refName + '/targets/';
       var ref = (new Firebase(url)).child(Data.user.id);
       ref.set('decline',function() {
+        Data.refreshRequests();
+      });
+    };
+    $scope.cancel = function(request) {
+      var url = Data.requestsUrl + request.refName;
+      var ref = new Firebase(url);
+      ref.remove(function() {
         Data.refreshRequests();
       });
     };

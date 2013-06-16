@@ -9,6 +9,11 @@ angular.module('standhubApp')
     function (user) {
       $scope.user = user;
       if (user) {
+        var tags = [];
+        _.each(user.tags, function(tag) {
+          tags.push({id:tag,text:tag});
+        });
+        $scope.tags = tags;
         $scope.loggedIn = true;
       }
     });
@@ -16,7 +21,10 @@ angular.module('standhubApp')
     //options for tag field
     $scope.tagOptions = {
       tags:["AngularJS", "JavaScript","Objective-C", "iOS","Unix","Pitch decks"],
-      tokenSeparators: [",",";"]
+      tokenSeparators: [",",";"],
+      initSelection : function (element, callback) {
+        callback($scope.tags);
+      }
     };
 
     $scope.facebookLogin = function() {
@@ -37,11 +45,6 @@ angular.module('standhubApp')
       $scope.loggedIn = false;
       $scope.tags = [];
     };
-
-    $scope.$watch('Data.tags', function(tags) {
-      // debugger;
-      $scope.tags = tags;
-    },true);
 
     //ui customization
     $scope.opts = {

@@ -15,7 +15,7 @@ angular.module('standhubApp')
     data.requests = angularFireCollection(data.requestsUrl);
     var requestsRef = new Firebase(data.requestsUrl);
 
-    data.tags = [];
+    // data.tags = [];
 
     // var listRef = new Firebase(data.fireUrl + 'users');
     // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
@@ -101,6 +101,9 @@ angular.module('standhubApp')
         //   data.requestsFromYou.push(reqData);
         // }
       });
+      refreshRequestsRef.on('child_removed', function(oldSnapshot) {
+        // data.refreshRequests();
+      });
     };
     // refreshRequestsRef.on('child_changed', function(snapshot) {
     //   if (!data.user) {
@@ -133,10 +136,11 @@ angular.module('standhubApp')
         data.user = user;
         var oldUser = data.userFromId(user.id);
         var ending = function() {
+          data.user = oldUser;
           data.userUrl += oldUser.id;
           data.userRef = new Firebase(data.userUrl);
           $rootScope.$apply(); //needed for digest to update after FB popup
-          data.tags = data.user.tags || [];
+          // data.tags = data.user.tags || [];
           data.refreshRequests();
           // var refreshUserRef = function() {
           //   var refreshedUser = data.userFromId(user.id);
@@ -176,7 +180,7 @@ angular.module('standhubApp')
         data.userUrl = data.fireUrl + 'users/';
         data.requestsFromYou = [];
         data.requestsToYou = [];
-        data.tags = [];
+        // data.tags = [];
       }
     });
 
