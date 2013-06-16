@@ -12,10 +12,10 @@ angular.module('standhubApp')
     //   };
     // });
 
-    $scope.submitRequest = function(skills,comment) {
+    $scope.submitRequest = function(tag,comment) {
       //Data will add 'targets','date',and 'from'
       Data.addRequest({
-        skill: skills||[],
+        tag:tag||'',
         comment: comment||''
       });
     };

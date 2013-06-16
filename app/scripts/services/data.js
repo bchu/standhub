@@ -12,7 +12,6 @@ angular.module('standhubApp')
     var listRef = new Firebase(data.fireUrl + 'users');
 
     //store list of all usernames
-    // data.allUsernames = {};
     data.users = angularFireCollection(data.userUrl);
     // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
     // promise.then(function() {
@@ -36,10 +35,10 @@ angular.module('standhubApp')
     //   data.allUsernames[user.id] = true;
     // });
 
-    data.doesUsernameExist = function(userid) {
-      for (var i = 0; i < angularFireCollection.length; i++) {
-        if (userid === angularFireCollection[i].id) {
-          return true;
+    data.userKeyFromId = function(userid) {
+      for (var i = 0; i < data.users.length; i++) {
+        if (userid === data.users[i].id) {
+          return data.users[i].$id;
         }
       }
       return false;
@@ -53,11 +52,11 @@ angular.module('standhubApp')
         console.log(error);
       } else if (user) {
         data.user = user;
-        data.updateUsernames();
-        if (doesUsernameExist(user.id)) { //facebook id
+        var userKey = data.userKeyFromId(user.id);
+        if (!userKey) { //facebook id
           data.users.add(user);
         }
-        data.userUrl += user.id;
+        data.userUrl += userKey;
         data.userRef = new Firebase(data.userUrl);
         console.log('authservicelogin');
         console.log(user);
@@ -70,17 +69,23 @@ angular.module('standhubApp')
     //for dev purposes (disable auto-login)
     data.authClient.logout();
 
-    data.requestsUrl = data.fireUrl + 'requests';
+    var requestsUrl = data.fireUrl + 'requests';
+    data.requests = angularFireCollection(requestsUrl);
     data.addRequest = function(obj) {
       obj.from = data.user.id;
       obj.date = new Date();
       //find experts to match with and then push data to server
-      var callback = function(userData) {
-
-        data.requestsUrl.push(obj);
-      }
-    }
-    // data.requests = angularFireCollection(new Firebase(data.requestsUrl));
+      var targets = [];
+      _.each(data.users, function(user) {
+        if (_.contains(user.tags,obj.tag)) {
+          targets.push(user.$id);
+        }
+        if (targets.length >=3) {
+          return false;
+        }
+      });
+      data.requests.add(request);
+    };
 
     return data;
   }]);
