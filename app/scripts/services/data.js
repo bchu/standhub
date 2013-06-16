@@ -113,8 +113,6 @@ angular.module('standhubApp')
             refreshRequests();
         };
         if (!userKey) { //facebook id
-          debugger;
-          data.users.add(user, function() {
             userKey = data.userKeyFromId(user.id);
             ending();
           });
