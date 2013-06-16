@@ -3135,7 +3135,9 @@ ul.messagesList li span.date {
 
 
 
-
+.navbar .brand {
+  height:40px;
+}
 
 .box-content ul {
   list-style-type: none !important;
@@ -3161,6 +3163,7 @@ ul.messagesList li span.date {
   color: black !important;
 }
 .status.avatar {
+  top:5px;
   position: absolute;
   float: left;
   -webkit-border-radius: 50em;
