@@ -36,8 +36,8 @@
             <i class="halflings-icon user"></i> <b>Your request for help with:</b><span class="badge">{{request.tag}}</span>
             <div class="date"><i class="halflings-icon time"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
           </dt>
-          <ul style="display:inline;">
-            <li ng-repeat="(userId,response) in request.targets" style="margin-top:7px;display:inline;">
+          <ul class="pull-right" style="display:inline;">
+            <li ng-repeat="(userId,response) in request.targets" style="margin:0px;">
               <span class="label label-{{response}}">
               {{userId | username}}, {{response}}
               </span>
@@ -46,7 +46,7 @@
            <dd class="message" style="min-height:30px">
             {{request.comment}}
            </dd>
-           <div class="pull-right" style="margin-top: -8px;">
+           <div style="margin-top:8px;margin-bottom:-8px;">
             <button class="btn btn-reverse" ng-click="cancel(request)"><i class="icon-remove"></i> Cancel</button>
           </div>
         </div>
