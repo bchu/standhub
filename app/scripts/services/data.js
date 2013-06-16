@@ -94,12 +94,12 @@ angular.module('standhubApp')
         var refName = snapshot.name();
         for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
           if (data.requestsFromYou[i].refName === refName) {
-            data.requestsFromYou.targets = snapshot.targets;
+            data.requestsFromYou[i].targets = snapshot.val().targets;
           }
         }
         for (var i = data.requestsToYou.length-1; i >=0 ; i--) {
           if (data.requestsToYou[i].refName === refName) {
-            data.requestsToYou.targets = snapshot.targets;
+            data.requestsToYou[i].targets = snapshot.val().targets;
           }
         }
       });
