@@ -6,7 +6,6 @@ angular.module('standhubApp')
     $scope.$watch(
       function() {return Data.requestsToYou;},
       function(requestsToYou) {
-        console.log(requestsToYou);
         $scope.requestsToYou = requestsToYou;
     }, true);
     $scope.$watch(
@@ -27,7 +26,7 @@ angular.module('standhubApp')
       var url = Data.requestsUrl + request.refName + '/targets/';
       var ref = (new Firebase(url)).child(Data.user.id);
       ref.set('accept',function() {
-        Data.refreshRequests();
+        // Data.refreshRequests();
       });
 
     };
@@ -35,14 +34,14 @@ angular.module('standhubApp')
       var url = Data.requestsUrl + request.refName + '/targets/';
       var ref = (new Firebase(url)).child(Data.user.id);
       ref.set('decline',function() {
-        Data.refreshRequests();
+        // Data.refreshRequests();
       });
     };
     $scope.cancel = function(request) {
       var url = Data.requestsUrl + request.refName;
       var ref = new Firebase(url);
       ref.remove(function() {
-        Data.refreshRequests();
+        // Data.refreshRequests();
       });
     };
   }]);

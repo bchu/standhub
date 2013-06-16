@@ -91,19 +91,28 @@ angular.module('standhubApp')
         }
       });
       data.refreshRequestsRef.on('child_changed', function(snapshot) {
+        // debugger;
         var refName = snapshot.name();
         for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
           if (data.requestsFromYou[i].refName === refName) {
+        // debugger;
             data.requestsFromYou[i].targets = snapshot.val().targets;
           }
         }
         for (var i = data.requestsToYou.length-1; i >=0 ; i--) {
           if (data.requestsToYou[i].refName === refName) {
+        // debugger;
             data.requestsToYou[i].targets = snapshot.val().targets;
+            //you declined someone's alert
+            if (snapshot.val().targets[data.user.id]) {
+              data.requestsToYou.splice(i,1);
+            }
           }
         }
+        // debugger;
       });
       data.refreshRequestsRef.on('child_removed', function(oldSnapshot) {
+        debugger;
         var refName = oldSnapshot.name();
         for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
           if (data.requestsFromYou[i].refName === refName) {
