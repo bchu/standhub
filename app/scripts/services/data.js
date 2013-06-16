@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('standhubApp')
-  .factory('Data', ['angularFire', '$rootScope', function(angularFire,$rootScope) {
+  .factory('Data', ['angularFire', 'angularFireCollection', '$rootScope', function(angularFire, angularFireCollection, $rootScope) {
     var data = {};
 
     data.fireUrl = 'https://standhubdev.firebaseio.com/';
@@ -9,21 +9,41 @@ angular.module('standhubApp')
     data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
     data.user;
     data.userRef;
-
-    data.forEachUser = function(callback) {
-      var listRef = new Firebase(data.fireUrl + 'users');
-      listRef.on('child_added', function(snapshot) {
-        var usrData = snapshot.val();
-        callback(usrData);
-      });
-    };
+    var listRef = new Firebase(data.fireUrl + 'users');
 
     //store list of all usernames
-    data.allUsernames = {};
-    data.forEachUser(function(user) {
-      data.allUsernames[user.id] = true;
-      console.log('child added');
-    });
+    // data.allUsernames = {};
+    data.users = angularFireCollection(data.userUrl);
+    // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
+    // promise.then(function() {
+    //   var d = data;
+    //   debugger;
+    // });
+    // data.forEachUser = function(callback) {
+    //   debugger;
+    //   for (var i = 0; i < data.allUsers.length; i++) {
+    //     // debugger;
+    //     callback(data.allUsers[i]);
+    //   }
+    //   var listRef = new Firebase(data.fireUrl + 'users');
+    //   listRef.on('child_added', function(snapshot) {
+    //     var usrData = snapshot.val();
+    //     callback(usrData);
+    //   });
+    // };
+
+    // data.forEachUser(function(user) {
+    //   data.allUsernames[user.id] = true;
+    // });
+
+    data.doesUsernameExist = function(userid) {
+      for (var i = 0; i < angularFireCollection.length; i++) {
+        if (userid === angularFireCollection[i].id) {
+          return true;
+        }
+      }
+      return false;
+    };
 
     //handle auth
     data.authClient = new FirebaseAuthClient(data.firebase, function(error, user) {
@@ -33,8 +53,9 @@ angular.module('standhubApp')
         console.log(error);
       } else if (user) {
         data.user = user;
-        if (!data.allUsernames[user.id]) { //facebook id
-          listRef.child(user.id).set(user); 
+        data.updateUsernames();
+        if (doesUsernameExist(user.id)) { //facebook id
+          data.users.add(user);
         }
         data.userUrl += user.id;
         data.userRef = new Firebase(data.userUrl);
@@ -52,6 +73,12 @@ angular.module('standhubApp')
     data.requestsUrl = data.fireUrl + 'requests';
     data.addRequest = function(obj) {
       obj.from = data.user.id;
+      obj.date = new Date();
+      //find experts to match with and then push data to server
+      var callback = function(userData) {
+
+        data.requestsUrl.push(obj);
+      }
     }
     // data.requests = angularFireCollection(new Firebase(data.requestsUrl));
 

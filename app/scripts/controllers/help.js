@@ -13,12 +13,10 @@ angular.module('standhubApp')
     // });
 
     $scope.submitRequest = function(skills,comment) {
-      var targets = [];
-      //a 'from' property is added by Data - has user.id
+      //Data will add 'targets','date',and 'from'
       Data.addRequest({
         skill: skills||[],
-        comment: comment||'',
-        targets: targets
+        comment: comment||''
       });
     };
   }]);
