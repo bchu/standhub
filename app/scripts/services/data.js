@@ -4,15 +4,15 @@ angular.module('standhubApp')
   .factory('Data', ['angularFire', 'angularFireCollection', '$rootScope', function(angularFire, angularFireCollection, $rootScope) {
     var data = {};
 
-    data.fireUrl = 'https://standhubdev.firebaseio.com/';
-    data.userUrl = data.fireUrl + 'users/';
     // data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
+    // var listRef = new Firebase(data.fireUrl + 'users');
+    data.fireUrl = 'https://standhubdev.firebaseio.com/';
     data.user;
     data.userRef;
-    // var listRef = new Firebase(data.fireUrl + 'users');
-
-    //store list of all usernames
+    data.userUrl = data.fireUrl + 'users/';
     data.users = angularFireCollection(data.userUrl);
+    var requestsUrl = data.fireUrl + 'requests';
+    data.requests = angularFireCollection(requestsUrl);
     // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
     // promise.then(function() {
     //   var d = data;
@@ -67,9 +67,8 @@ angular.module('standhubApp')
     //for dev purposes (disable auto-login)
     data.authClient.logout();
 
+
     //HELP REQUESTS
-    var requestsUrl = data.fireUrl + 'requests';
-    data.requests = angularFireCollection(requestsUrl);
     data.addRequest = function(obj) {
       obj.from = data.user.id;
       obj.utc_timestamp = new Date().getTime();
@@ -86,6 +85,7 @@ angular.module('standhubApp')
       obj.targets = targets;
       data.requests.add(obj);
     };
+
 
     return data;
   }]);
