@@ -579,6 +579,18 @@
        -moz-box-sizing: border-box;
             box-sizing: border-box;
   }
+  .row-fluid [class*="span"].brand {
+    display: block;
+    float: left;
+    width: 30%;
+    min-height: 30px;
+    margin-left: 2.7624309392265194%;
+    *margin-left: 2.709239449864817%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
   .row-fluid [class*="span"]:first-child {
     margin-left: 0;
   }

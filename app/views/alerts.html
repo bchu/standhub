@@ -4,46 +4,54 @@
     <div class="box-icon">
     </div>
   </div>
-  <div class="box-content">
-    <ul>
-
-      <li ng-repeat="request in requestsToYou">
+  <div class="box-content" style="padding: 11px 22px;">
+      <dl ng-repeat="request in requestsToYou">
         <div class="from">
-          <i class="halflings-icon user"></i><b>{{request.from | username}}</b>
+          <dt><i class="halflings-icon user"></i><b>{{request.from | username}}</b>
+           needs help with<span class="badge">{{request.tag}}</span>
           <div class="date"><i class="halflings-icon time" style="margin-top: 2px;margin-right: 5px;"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
-          <div class="menu"> <!-- Tags -->
-           Needs help with<span class="label label-important">{{request.tag}}</span>
-           <div>
+        </dt>
+           <dd>
             {{request.comment}}
-           </div>
-           <div>
-              <button ng-click="accept(request)" class="btn btn-info" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
-              <button ng-click="decline(request)" class="btn btn-info" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
-            </div>
+           </dd>
+          <div class="menu" style="margin-top:8px;"> <!-- Tags -->
+            <button ng-click="accept(request)" class="btn" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
+            <button ng-click="decline(request)" class="btn" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
           </div>
         </div>
-      </li>
-      <hr>
-      <li ng-repeat="request in requestsFromYou">
+        <hr>
+      </dl>
+  </div>
+  <div class="box-header">
+    <h2>Your Requests</h2>
+    <div class="box-icon">
+    </div>
+  </div>
+
+  <div class="box-content" style="padding: 22px;">
+      <dl ng-repeat="request in requestsFromYou">
         <div class="from">
-          <i class="halflings-icon user"></i> <b>Your request for help with:</b><span class="label label-important">{{request.tag}}</span>
-          <div class="date"><i class="halflings-icon time"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
+          <dt>
+            <i class="halflings-icon user"></i> <b>Your request for help with:</b><span class="badge">{{request.tag}}</span>
+            <div class="date"><i class="halflings-icon time"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
+          </dt>
           <ul style="display:inline;">
-            <li ng-repeat="(userId,response) in request.targets" style="margin-top:7px;">
+            <li ng-repeat="(userId,response) in request.targets" style="margin-top:7px;display:inline;">
               <span class="label label-{{response}}">
               {{userId | username}}, {{response}}
               </span>
             </li>
           </ul>
-           <div class="message">
+           <dd class="message" style="min-height:30px">
             {{request.comment}}
-           </div>
-           <div>
-            <button class="btn btn-info" ng-click="cancel(request)"><i class="icon-remove"></i> Cancel</button>
+           </dd>
+           <div class="pull-right" style="margin-top: -8px;">
+            <button class="btn btn-reverse" ng-click="cancel(request)"><i class="icon-remove"></i> Cancel</button>
           </div>
         </div>
-      </li>
-    </ul>
+        <hr>
+      </dl>
 
-  </div>
+</div>
+
 </div>

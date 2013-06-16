@@ -3213,7 +3213,7 @@ ul.messagesList li span.date {
 .slide-leave-start {
   top:200px;
 }
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 479px) and (min-width: 480px) {
   .navbar .brand {
     width: 20%;
   }
@@ -3226,4 +3226,7 @@ label {
 }
 .label-pending {
   background: #fabb3d;
+}
+.label-decline {
+  background-color: #252525;
 }
