@@ -112,7 +112,7 @@ angular.module('standhubApp')
         // debugger;
       });
       data.refreshRequestsRef.on('child_removed', function(oldSnapshot) {
-        debugger;
+        // debugger;
         var refName = oldSnapshot.name();
         for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
           if (data.requestsFromYou[i].refName === refName) {
