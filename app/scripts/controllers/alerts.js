@@ -14,12 +14,12 @@ angular.module('standhubApp')
         $scope.requestsFromYou = requestsFromYou;
     }, true);
 
-    var callback = function() {
-      var d = Data;
-      console.log(d);
-      $timeout(callback, 3000);
-    };
-    $timeout(callback, 3000);
+    // var callback = function() {
+    //   var d = Data;
+    //   console.log(d);
+    //   $timeout(callback, 3000);
+    // };
+    // $timeout(callback, 3000);
 
     //need to update to show accepted status
     $scope.accept = function(request) {
