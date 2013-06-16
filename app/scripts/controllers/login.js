@@ -35,7 +35,13 @@ angular.module('standhubApp')
     $scope.logout = function() {
       Data.authClient.logout();
       $scope.loggedIn = false;
+      $scope.tags = [];
     };
+
+    $scope.$watch('Data.tags', function(tags) {
+      // debugger;
+      $scope.tags = tags;
+    },true);
 
     //ui customization
     $scope.opts = {
