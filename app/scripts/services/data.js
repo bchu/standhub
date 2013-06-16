@@ -104,7 +104,7 @@ angular.module('standhubApp')
         // debugger;
             data.requestsToYou[i].targets = snapshot.val().targets;
             //you declined someone's alert
-            if (snapshot.val().targets[data.user.id]) {
+            if (snapshot.val().targets[data.user.id]==='decline') {
               data.requestsToYou.splice(i,1);
             }
           }
