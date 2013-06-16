@@ -125,6 +125,8 @@ angular.module('standhubApp')
         data.user = undefined;
         data.userRef = undefined;
         data.userUrl = data.fireUrl + 'users/';
+        data.requestsFromYou = [];
+        data.requestsToYou = [];
       }
     });
     //for dev purposes (disable auto-login)
