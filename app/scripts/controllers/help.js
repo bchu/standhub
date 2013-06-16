@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('standhubApp')
-  .controller('HelpCtrl', ['$scope', 'angularFireCollection', function ($scope, angularFireCollection) {
+  .controller('HelpCtrl', ['$scope', 'Data', function ($scope, Data) {
     // var url = $scope.fireUrl + 'helpReqs';
     // var promise = angularFire(url, $scope, 'helpReqs', []);
 
@@ -14,11 +14,11 @@ angular.module('standhubApp')
 
     $scope.submitRequest = function(skills,comment) {
       var targets = [];
-      $scope.messages.add({
-        from: $scope.user.id,
+      //a 'from' property is added by Data - has user.id
+      Data.addRequest({
         skill: skills||[],
         comment: comment||'',
         targets: targets
       });
-      };
+    };
   }]);
