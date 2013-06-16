@@ -3154,7 +3154,10 @@ ul.messagesList li span.date {
   margin-left: 40px;
   font-size: 16px;
 }
-
+.date {
+  display:inline;
+  float: right;
+}
 #wrap {
   margin: 20px;
 }
