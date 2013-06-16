@@ -38,4 +38,11 @@ angular.module('standhubApp')
         Data.refreshRequests();
       });
     };
+    $scope.cancel = function(request) {
+      var url = Data.requestsUrl + request.refName;
+      var ref = new Firebase(url);
+      ref.remove(function() {
+        Data.refreshRequests();
+      });
+    };
   }]);
