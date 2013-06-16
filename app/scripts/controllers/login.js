@@ -35,6 +35,7 @@ angular.module('standhubApp')
     //UNUSED:
     $scope.logout = function() {
       Data.authClient.logout();
+      $scope.loggedIn = false;
     };
 
     //ui customization
