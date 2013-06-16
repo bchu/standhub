@@ -16,13 +16,13 @@
 
             <!-- start: User Dropdown -->
             <li>
-                <div class="avatar">
-                <img  ng-src="https://graph.facebook.com/gdi2290/picture?type=normal"
-                     alt="Avatar">
-                </div>
                 <div class="user">
                   <!-- <span class="hello">Welcome!</span> -->
                   <div ng-controller="LoginCtrl">
+                    <div class="avatar-nav avatar">
+                    <img  ng-show="loggedIn" ng-src="https://graph.facebook.com/{{user.username}}/picture?type=normal"
+                         alt="Avatar">
+                    </div>
 
                       <button class="btn btn-info btn-setting"
                               style="margin-top: 10px;"
