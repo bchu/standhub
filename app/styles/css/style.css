@@ -2968,7 +2968,7 @@ ul.messagesList li span.date {
 }
 .task .time {
   display: inline-block;
-  width: 15%;
+  width: 30%;
   padding: 10px 10px 10px 0px;
   font-size: 12px;
   text-align: right;
@@ -3188,3 +3188,28 @@ ul.messagesList li span.date {
   margin-top: 12px;
 }
 
+
+.slide-enter-setup, .slide-leave-setup {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+.slide-enter-setup {
+  position:absolute;
+  left:0;
+  top:-200px;
+}
+
+.slide-enter-start {
+  top:0;
+}
+
+.slide-leave-setup {
+  position:absolute;
+  top:0;
+}
+
+.slide-leave-start {
+  top:200px;
+}

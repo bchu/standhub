@@ -95,7 +95,7 @@
   .task .time {
     display: inline-block;
     float: right;
-    width: 20%;
+    width: 30%;
     padding: 10px 10px;
     font-size: 12px;
     text-align: right;
@@ -207,7 +207,7 @@
   .task .time {
     display: inline-block;
     float: right;
-    width: 25%;
+    width: 30%;
     padding: 10px 10px;
     font-size: 10px;
     text-align: right;
@@ -322,7 +322,7 @@
   .task .time {
     display: inline-block;
     float: right;
-    width: 25%;
+    width: 30%;
     padding: 10px 10px;
     font-size: 10px;
     text-align: right;
@@ -439,3 +439,4 @@
     padding: 10px 20px;
   }
 }
+
