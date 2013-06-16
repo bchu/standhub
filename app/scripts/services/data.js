@@ -92,11 +92,14 @@ angular.module('standhubApp')
     data.responses = [];
     data.requestsToYou = [];
     requestsRef.on('child_added', function(snapshot) {
+      if (!data || !data.user) {
+        return;
+      }
       var data = snapshot.val();
-      if (_.contains(data.targets,user.$id)) {
+      if (_.contains(data.targets,data.user.$id)) {
         data.requestsToYou.push(data);
       }
-      else if(data.from === user.$id) {
+      else if(data.from === data.user.$id) {
         // if (data.targets)
       }
     });
