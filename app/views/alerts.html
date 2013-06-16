@@ -9,7 +9,7 @@
 
       <li ng-repeat="request in requestsToYou">
         <div class="from">
-          <i class="halflings-icon user"></i> <b>{{request.from | username}}</b>
+          <i class="halflings-icon user"></i><b>{{request.from | username}}</b>
           <div class="date"><i class="halflings-icon time" style="margin-top: 2px;margin-right: 5px;"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
           <div class="menu"> <!-- Tags -->
            Needs help with<span class="label label-important">{{request.tag}}</span>
@@ -17,26 +17,30 @@
             {{request.comment}}
            </div>
            <div>
-              <button ng-click="accept(request)" class="btn btn-small" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
-              <button ng-click="decline(request)" class="btn btn-small" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
+              <button ng-click="accept(request)" class="btn btn-info" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
+              <button ng-click="decline(request)" class="btn btn-info" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
             </div>
           </div>
         </div>
       </li>
-
+      <hr>
       <li ng-repeat="request in requestsFromYou">
         <div class="from">
           <i class="halflings-icon user"></i> <b>Your request for help with:</b><span class="label label-important">{{request.tag}}</span>
-           <div>
-            {{request.comment}}
-           </div>
           <div class="date"><i class="halflings-icon time"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
-          <ul>
-            <li ng-repeat="(userId,response) in request.targets">
+          <ul style="display:inline;">
+            <li ng-repeat="(userId,response) in request.targets" style="margin-top:7px;">
+              <span class="label label-{{response}}">
               {{userId | username}}, {{response}}
+              </span>
             </li>
           </ul>
-            <button class="btn btn-small" ng-click="cancel(request)"><i class="icon-remove"></i> Cancel</button>
+           <div class="message">
+            {{request.comment}}
+           </div>
+           <div>
+            <button class="btn btn-info" ng-click="cancel(request)"><i class="icon-remove"></i> Cancel</button>
+          </div>
         </div>
       </li>
     </ul>

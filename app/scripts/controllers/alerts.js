@@ -2,10 +2,11 @@
 
 angular.module('standhubApp')
   .controller('AlertsCtrl', ['$scope', 'Data', '$timeout', function ($scope, Data,$timeout) {
-    
+
     $scope.$watch(
       function() {return Data.requestsToYou;},
       function(requestsToYou) {
+        console.log(requestsToYou);
         $scope.requestsToYou = requestsToYou;
     }, true);
     $scope.$watch(
