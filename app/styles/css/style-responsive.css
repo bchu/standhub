@@ -122,7 +122,8 @@
     display: block;
     position: absolute;
     left: 0px;
-    width: 8.334% !important;
+    /*width: 8.334%;*/
+    width: 15%;
     padding: 8px 0px !important;
   }
   a.brand span {
