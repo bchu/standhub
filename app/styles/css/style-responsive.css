@@ -86,10 +86,10 @@
     display: inline-block;
     /*width: 70%;*/
     padding: 10px 10px;
-    font-size: 12px;
+    font-size: 15px;
   }
   .task .desc .title {
-    font-size: 16px;
+    font-size: 17px;
     margin-bottom: 5px;
   }
   .task .time {

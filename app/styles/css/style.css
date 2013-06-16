@@ -3218,3 +3218,6 @@ ul.messagesList li span.date {
     width: 20%;
   }
 }
+label {
+  margin: 10px 10px 10px 0;
+}
