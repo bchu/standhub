@@ -11,6 +11,7 @@
 <ul class="messagesList" ng-controller="StatusesCtrl">
 
           <div class="task" ng-repeat="user in users">
+            <img class="status avatar" ng-src="https://graph.facebook.com/{{user.username}}/picture?width=80&height=80">
             <div class="desc">
               <div class="title">{{ user.displayName }}</div>
               {{ user.status }}
