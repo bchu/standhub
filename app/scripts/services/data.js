@@ -5,7 +5,6 @@ angular.module('standhubApp')
     var data = {};
 
     // data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
-    // var listRef = new Firebase(data.fireUrl + 'users');
     data.fireUrl = 'https://standhubdev.firebaseio.com/';
     data.user;
     data.userRef;
@@ -13,6 +12,9 @@ angular.module('standhubApp')
     data.users = angularFireCollection(data.userUrl);
     var requestsUrl = data.fireUrl + 'requests';
     data.requests = angularFireCollection(requestsUrl);
+    var requestsRef = new Firebase(requestsUrl);
+
+    // var listRef = new Firebase(data.fireUrl + 'users');
     // var promise = angularFire(data.userUrl, data, 'allUsers2',[]);
     // promise.then(function() {
     //   var d = data;
@@ -70,13 +72,13 @@ angular.module('standhubApp')
 
     //HELP REQUESTS
     data.addRequest = function(obj) {
-      obj.from = data.user.id;
+      obj.from = data.user.$id;
       obj.utc_timestamp = new Date().getTime();
       //find experts to match with and then push data to server
       var targets = [];
       _.each(data.users, function(user) {
         if (_.contains(user.tags,obj.tag)) {
-          targets.push(user.$id);
+          targets.push({user_id:user.$id,response:null});
         }
         if (targets.length >=3) {
           return false;
@@ -85,6 +87,19 @@ angular.module('standhubApp')
       obj.targets = targets;
       data.requests.add(obj);
     };
+
+    //ALERTS:
+    data.responses = [];
+    data.requestsToYou = [];
+    requestsRef.on('child_added', function(snapshot) {
+      var data = snapshot.val();
+      if (_.contains(data.targets,user.$id)) {
+        data.requestsToYou.push(data);
+      }
+      else if(data.from === user.$id) {
+        // if (data.targets)
+      }
+    });
 
 
     return data;
