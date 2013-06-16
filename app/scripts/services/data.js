@@ -1,21 +1,23 @@
 'use strict';
 
 angular.module('standhubApp')
-  .factory('Data', ['angularFire', function(angularFire) {
+  .factory('Data', ['angularFire', '$rootScope', function(angularFire,$rootScope) {
     var data = {};
     data.fireUrl = 'https://standhubdev.firebaseio.com/';
     data.firebase = new Firebase(data.fireUrl);
-    data.user = null;
+    data.user;
     data.userUrl = data.fireUrl + 'users/';
-    data.userRef = null;
+    data.userRef;
 
     data.allUsernames = {};
     var listRef = new Firebase(data.userUrl);
     listRef.on('child_added', function(snapshot) {
       var usrData = snapshot.val();
       data.allUsernames[usrData.id] = true;
+      console.log('child added');
     });
     data.authClient = new FirebaseAuthClient(data.firebase, function(error, user) {
+      console.log('auth service active');
       if (error) {
         // an error occurred while attempting login
         console.log(error);
@@ -26,12 +28,15 @@ angular.module('standhubApp')
         }
         data.userUrl += user.id;
         data.userRef = new Firebase(data.userUrl);
+        console.log('authservicelogin');
         console.log(user);
+        $rootScope.$apply();
       } else {
-        data.user = null;
-        data.userRef = null;
+        data.user = undefined;
+        data.userRef = undefined;
       }
     });
+    data.authClient.logout();
 
 
     data.requestsUrl = data.fireUrl + 'requests';

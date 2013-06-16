@@ -4,7 +4,11 @@
     </div>
     <div class="modal-body">
       <center>
-        <button class="btn btn-large btn-primary">Facebook</button>
+         <div ng-switch on="loggedIn" >
+          <button ng-switch-when="false" ng-click="facebookLogin()" class="btn btn-large btn-primary">Facebook</button>
+          <span ng-switch-when="pending">Logging in...</span>
+          <span ng-switch-when="true">Welcome {{user.name}}</span>
+        </div>
       </center>
         <ul>
             <li ng-repeat="tag in tags">

@@ -3,9 +3,22 @@
 angular.module('standhubApp')
   .controller('LoginCtrl', ['$scope', 'Data', function ($scope, Data) {
 
+    $scope.loggedIn = false;
+
+    $scope.$watchCollection(
+    function () {return Data.user;},
+    function (user) {
+      $scope.user = user;
+      if (user) {
+        $scope.loggedIn = true;
+      }
+    });
+
     $scope.facebookLogin = function() {
       Data.authClient.login('facebook', {rememberMe:true});
+      $scope.loggedIn = 'pending';
     };
+
     $scope.addSkills = function(skills) {
       //skills should be an array
       Data.userRef.child('skills').set(skills);
@@ -14,7 +27,6 @@ angular.module('standhubApp')
     $scope.test = function() {
       debugger;
     }
-
 
     // $scope.emailLogin = function(email, password) {
     //   authClient.login('password', {
@@ -35,7 +47,7 @@ angular.module('standhubApp')
       Data.authClient.logout();
     };
 
-    $scope.skills = ['Angular.JS', 'Backbone.js'];
+    $scope.tags = ['Angular.JS', 'Backbone.js'];
 
     //ui customization
     $scope.opts = {
