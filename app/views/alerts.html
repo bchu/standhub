@@ -37,7 +37,7 @@
             <div class="date"><i class="halflings-icon time"></i><span class="date" am-time-ago="request.utc_timestamp"></span></div>
           </dt>
           <ul class="pull-right" style="display:inline;">
-            <li ng-repeat="(userId,response) in request.targets" style="margin:0px;">
+            <li ng-repeat="(userId,response) in request.targets track by $index" style="margin:0px;">
               <span class="label label-{{response}}">
               {{userId | username}}, {{response}}
               </span>
