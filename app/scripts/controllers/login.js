@@ -4,7 +4,6 @@ angular.module('standhubApp')
   .controller('LoginCtrl', ['$scope', 'Data', function ($scope, Data) {
 
     $scope.loggedIn = false;
-
     $scope.$watchCollection(
     function () {return Data.user;},
     function (user) {
@@ -19,9 +18,9 @@ angular.module('standhubApp')
       $scope.loggedIn = 'pending';
     };
 
-    $scope.addSkills = function(skills) {
-      //skills should be an array
-      Data.userRef.child('skills').set(skills);
+    $scope.addTags = function(tags) {
+      //tags should be an array
+      Data.userRef.child('tags').set(tags);
     };
 
     $scope.test = function() {
@@ -57,7 +56,8 @@ angular.module('standhubApp')
     $scope.open = function () {
       $scope.shouldBeOpen = true;
     };
-    $scope.close = function () {
+    $scope.close = function (tags) {
+      $scope.addTags(tags);
       $scope.shouldBeOpen = false;
     };
   }]);

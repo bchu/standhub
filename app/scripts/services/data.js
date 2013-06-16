@@ -30,7 +30,7 @@ angular.module('standhubApp')
         data.userRef = new Firebase(data.userUrl);
         console.log('authservicelogin');
         console.log(user);
-        $rootScope.$apply();
+        $rootScope.$apply(); //needed for digest to update after FB popup
       } else {
         data.user = undefined;
         data.userRef = undefined;
