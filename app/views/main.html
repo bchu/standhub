@@ -1,13 +1,15 @@
 <div ng-include=" '/views/navbar.html' "></div>
 
-<div class="container-fluid-full">
-  <div class="row-fluid">
-    <div class="span7">
-      <center><h1>Status</h1></center>
-      <div ng-include=" '/views/statuses.html' "></div>
+<div id="wrap" class="container-fluid-full">
+    <div class="row-fluid">
+      <div class="span7">
+        <center><h1>Status</h1></center>
+        <div ng-include=" '/views/statuses.html' "></div>
+      </div>
+      <div class="box span5 noMargin" onTablet="span12" onDesktop="span4">
+        <div ng-include=" '/views/alert.html' "></div>
+        <div ng-include=" '/views/help.html' "></div>
+      </div>
+
     </div>
-    <div class="span5 message-view">
-      <div ng-include=" '/views/help.html' "></div>
-    </div>
-  </div>
 </div>
