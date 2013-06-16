@@ -3227,3 +3227,6 @@ label {
 .label-pending {
   background: #fabb3d;
 }
+.label-decline {
+  background-color: #252525;
+}
