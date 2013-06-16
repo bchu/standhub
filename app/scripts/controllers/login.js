@@ -26,6 +26,7 @@ angular.module('standhubApp')
 
     $scope.addTags = function(tags) {
       //tags should be an array
+      tags = _.pluck(tags,'text');
       Data.userRef.child('tags').set($scope.tags);
     };
 

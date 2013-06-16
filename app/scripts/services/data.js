@@ -84,7 +84,7 @@ angular.module('standhubApp')
           return false;
         }
       });
-      data.requests.add(request);
+      data.requests.add(obj);
     };
 
     return data;

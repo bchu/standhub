@@ -11,6 +11,7 @@ angular.module('standhubApp')
 
     $scope.submitRequest = function(tag,comment) {
       //Data will add 'targets','date',and 'from'
+      debugger;
       Data.addRequest({
         tag:tag||'',
         comment: comment||''
