@@ -29,10 +29,6 @@ angular.module('standhubApp')
       Data.userRef.child('tags').set($scope.tags);
     };
 
-    $scope.test = function() {
-      debugger;
-    }
-
     $scope.logout = function() {
       Data.authClient.logout();
     };
