@@ -6,7 +6,7 @@ angular.module('standhubApp')
 
     data.fireUrl = 'https://standhubdev.firebaseio.com/';
     data.userUrl = data.fireUrl + 'users/';
-    data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
+    // data.firebase = new Firebase(data.fireUrl); //possible refactor into inline
     data.user;
     data.userRef;
     // var listRef = new Firebase(data.fireUrl + 'users');
@@ -45,7 +45,7 @@ angular.module('standhubApp')
     };
 
     //handle auth
-    data.authClient = new FirebaseAuthClient(data.firebase, function(error, user) {
+    data.authClient = new FirebaseAuthClient(new Firebase(data.fireUrl), function(error, user) {
       console.log('auth service active');
       if (error) {
         // an error occurred while attempting login
@@ -58,8 +58,6 @@ angular.module('standhubApp')
         }
         data.userUrl += userKey;
         data.userRef = new Firebase(data.userUrl);
-        console.log('authservicelogin');
-        console.log(user);
         $rootScope.$apply(); //needed for digest to update after FB popup
       } else {
         data.user = undefined;
@@ -69,11 +67,12 @@ angular.module('standhubApp')
     //for dev purposes (disable auto-login)
     data.authClient.logout();
 
+    //HELP REQUESTS
     var requestsUrl = data.fireUrl + 'requests';
     data.requests = angularFireCollection(requestsUrl);
     data.addRequest = function(obj) {
       obj.from = data.user.id;
-      obj.date = new Date();
+      obj.utc_timestamp = new Date().getTime();
       //find experts to match with and then push data to server
       var targets = [];
       _.each(data.users, function(user) {
@@ -84,6 +83,7 @@ angular.module('standhubApp')
           return false;
         }
       });
+      obj.targets = targets;
       data.requests.add(obj);
     };
 

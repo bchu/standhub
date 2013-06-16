@@ -9,12 +9,15 @@ angular.module('standhubApp')
       maximumSelectionSize:1
     };
 
-    $scope.submitRequest = function(tag,comment) {
+    $scope.submitRequest = function(tags,comment) {
       //Data will add 'targets','date',and 'from'
-      debugger;
+      var tag = tags[0] && tags[0].text || '';
       Data.addRequest({
-        tag:tag||'',
+        tag:tag,
         comment: comment||''
       });
+      //clear out input fields:
+      $scope.tags = null;
+      $scope.comment = null;
     };
   }]);
