@@ -1,4 +1,4 @@
-<div ng-controller="AlertCtrl">
+<div ng-controller="AlertsCtrl">
   <div class="box-header">
     <h2><i class="icon-warning-sign"></i>Alerts</h2>
     <div class="box-icon">
@@ -6,8 +6,8 @@
   </div>
   <div class="box-content">
     <ul>
-      <li>
 
+      <li ng-repeat="request in requestsToYou">
         <div class="from">
           <i class="halflings-icon user"></i> <b>Steve Jobs</b>
           <div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
@@ -21,14 +21,10 @@
           </div>
             <button class="btn btn-small"><i class="icon-ok"></i> Accept</button>
             <button class="btn btn-small"><i class="icon-remove"></i> Cancel</button>
-
         </div>
-
-
-
       </li>
-      <li>
 
+      <li ng-repeat="request in requestsFromYou">
         <div class="from">
           <i class="halflings-icon user"></i> <b>Steve Jobs</b>
           <div class="date"><i class="halflings-icon time"></i> Today, <b>3:47 PM</b></div>
@@ -39,10 +35,7 @@
           </div>
             <button class="btn btn-small"><i class="icon-ok"></i> Accept</button>
             <button class="btn btn-small"><i class="icon-remove"></i> Cancel</button>
-
         </div>
-
-
       </li>
     </ul>
 
