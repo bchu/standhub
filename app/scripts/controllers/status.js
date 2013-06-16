@@ -4,13 +4,8 @@ angular.module('standhubApp')
   .controller('StatusCtrl', ['$scope', 'Data', function ($scope, Data) {
     //ui customization
     $scope.userStatus = '';
-    console.log('current User', Data.user);
-    // Data.userRef.child('status').set(obj)
     $scope.submitStatus = function() {
-
-      // $scope.userStatus;
-      console.log($scope.userStatus);
-      console.log(Data.user);
+      Data.userRef.child('status').set($scope.userStatus);
       $scope.close();
     };
     $scope.opts = {
