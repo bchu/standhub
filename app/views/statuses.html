@@ -16,10 +16,12 @@
               <div class="title">{{ user.displayName }}</div>
               {{ user.status }}
             </div>
+            <div class="time">
+              <div class="date">{{ moment(user.timestamp).startOf('hour').fromNow(); }}</div>
+            </div>
           </div>
 
           <div class="clearfix"></div>
-
 
 
 </ul>
