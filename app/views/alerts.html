@@ -4,9 +4,7 @@
     <div class="box-icon">
     </div>
   </div>
-  <div class="box-content" style="padding: 22px 22px 11px 22px;">
-    <ul>
-
+  <div class="box-content" style="padding: 11px 22px;">
       <dl ng-repeat="request in requestsToYou">
         <div class="from">
           <dt><i class="halflings-icon user"></i><b>{{request.from | username}}</b>
@@ -16,14 +14,14 @@
            <dd>
             {{request.comment}}
            </dd>
-          <div class="menu"> <!-- Tags -->
-            <button ng-click="accept(request)" class="btn btn-info" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
-            <button ng-click="decline(request)" class="btn btn-info" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
+          <div class="menu" style="margin-top:8px;"> <!-- Tags -->
+            <button ng-click="accept(request)" class="btn" style="margin:2px;"><i class="icon-ok"></i> Accept</button>
+            <button ng-click="decline(request)" class="btn" style="margin:2px;"><i class="icon-remove"></i> Decline</button>
           </div>
         </div>
         <hr>
       </dl>
-</div>
+  </div>
   <div class="box-header">
     <h2>Your Requests</h2>
     <div class="box-icon">
