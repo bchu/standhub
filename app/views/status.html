@@ -1,0 +1,31 @@
+<div ng-controller="StatusCtrl" modal="shouldBeOpen" close="close()" options="opts">
+    <div class="modal-header">
+        <h4>Post your Status</h4>
+    </div>
+    <div class="modal-body">
+            <form class="replyForm"method="post" action="">
+        <fieldset>
+          <div class="row-fluid">
+            <textarea tabindex="0"
+                      class="input-xlarge span12"
+                      id="post_status"
+                      name="status"
+                      rows="5"
+                      value=""
+                      placeholder="Post your status">
+            </textarea>
+          </div>
+          <div class="actions">
+
+            <button tabindex="3" type="submit" class="btn btn-success">Send message</button>
+
+          </div>
+
+        </fieldset>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+    </div>
+</div>

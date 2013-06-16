@@ -3155,3 +3155,8 @@ ul.messagesList li span.date {
 #wrap {
   margin: 20px;
 }
+
+#post_status input[placeholder], [placeholder], *[placeholder] {
+  color: black !important;
+}
+
