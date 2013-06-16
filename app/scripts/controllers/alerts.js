@@ -17,7 +17,7 @@ angular.module('standhubApp')
     var callback = function() {
       var d = Data;
       console.log(d);
-      console.log($scope);
+      // console.log($scope);
       $timeout(callback, 3000);
     };
     $timeout(callback, 3000);
