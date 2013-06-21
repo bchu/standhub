@@ -162,6 +162,7 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
+        // basedir: '<%= yeoman.dist %>',
         dirs: ['<%= yeoman.dist %>']
       }
     },
@@ -180,7 +181,7 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.dist %>/styles/main.css': [
             '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
+            '<%= yeoman.dist %>/styles/{,*/}*.css'
           ]
         }
       }
@@ -255,10 +256,15 @@ module.exports = function (grunt) {
             'components/**/*',
             'images/{,*/}*.{gif,webp}',
             'images/{,*/}*',
-            'styles/font/*',
-            'styles/fonts/*',
             'styles/img/*'
           ]
+        },
+        {
+          expand: true,
+          flatten:true,
+          src: ['styles/font/*'],
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>/font/'
         }]
       }
     }
@@ -274,7 +280,6 @@ module.exports = function (grunt) {
     'connect:livereload',
     'open',
     'watch'
-
   ]);
 
   grunt.registerTask('test', [
@@ -291,15 +296,15 @@ module.exports = function (grunt) {
     'coffee',
     'compass:dist',
     'useminPrepare',
-    // 'imagemin',
-    'cssmin',
+    'imagemin',
     'htmlmin',
     'concat',
     'copy',
+    'cssmin', //moving here seems to fix issue with icons not appearing (originally before htmlmin)
     'cdnify',
     'ngmin',
     'uglify',
-    // 'rev',
+    // 'rev', //bug with css not getting image urls replaced
     'usemin'
   ]);
 

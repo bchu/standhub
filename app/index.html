@@ -12,14 +12,16 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
-    <!-- build:css styles/main.css-->
+    <!-- problem is that select2 has images; the references to which get lost if we try to compile its css with everything else-->
     <link rel="stylesheet" href="components/select2/select2.css">
+    <!-- build:css({app,.tmp}) styles/main.css-->
     <link rel="stylesheet" href="styles/css/bootstrap.css">
     <link rel="stylesheet" href="styles/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="styles/css/style.css">
     <link rel="stylesheet" href="styles/css/style-responsive.css">
     <link rel="stylesheet" href="styles/css/retina.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/css/font-awesome.min.css"> <!--hack to get icons to work-->
     <!-- endbuild -->
 
   </head>
