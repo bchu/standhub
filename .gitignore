@@ -5,3 +5,4 @@ dist
 app/components
 logs/*
 .DS_Store
+gh_pages
