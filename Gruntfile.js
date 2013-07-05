@@ -247,7 +247,6 @@ module.exports = function (grunt) {
             'images/{,*/}*.{gif,webp,svg}',
             'styles/fonts/*',
             'images/{,*/}*',//my addition
-            'styles/img/*' //my addition
           ]
         }, {
           expand: true,
