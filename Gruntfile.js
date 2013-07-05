@@ -1,8 +1,15 @@
 'use strict';
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var LIVERELOAD_PORT = 35729;
+var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
+
+// # Globbing
+// for performance reasons we're only matching one level down:
+// 'test/spec/{,*/}*.js'
+// use this if you want to recursively match all subfolders:
+// 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
   // load all grunt tasks
@@ -31,16 +38,18 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass']
+        tasks: ['compass:server']
       },
       livereload: {
+        options: {
+          livereload: LIVERELOAD_PORT
+        },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ],
-        tasks: ['livereload']
+        ]
       }
     },
     connect: {
@@ -66,6 +75,15 @@ module.exports = function (grunt) {
             return [
               mountFolder(connect, '.tmp'),
               mountFolder(connect, 'test')
+            ];
+          }
+        }
+      },
+      dist: {
+        options: {
+          middleware: function (connect) {
+            return [
+              mountFolder(connect, yeomanConfig.dist)
             ];
           }
         }
@@ -99,12 +117,6 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
-    karma: {
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
-      }
-    },
     coffee: {
       dist: {
         files: [{
@@ -129,11 +141,15 @@ module.exports = function (grunt) {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
+        generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= yeoman.app %>/images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
         importPath: '<%= yeoman.app %>/components',
-        relativeAssets: true
+        httpImagesPath: '/images',
+        httpGeneratedImagesPath: '/images/generated',
+        httpFontsPath: '/styles/fonts',
+        relativeAssets: false
       },
       dist: {},
       server: {
@@ -142,12 +158,19 @@ module.exports = function (grunt) {
         }
       }
     },
-    concat: {
+    // not used since Uglify task does concat,
+    // but still available if needed
+    /*concat: {
+      dist: {}
+    },*/
+    rev: {
       dist: {
         files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '.tmp/scripts/{,*/}*.js',
-            '<%= yeoman.app %>/scripts/{,*/}*.js'
+          src: [
+            '<%= yeoman.dist %>/scripts/{,*/}*.js',
+            '<%= yeoman.dist %>/styles/{,*/}*.css',
+            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -162,7 +185,6 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        // basedir: '<%= yeoman.dist %>',
         dirs: ['<%= yeoman.dist %>']
       }
     },
@@ -177,14 +199,17 @@ module.exports = function (grunt) {
       }
     },
     cssmin: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/styles/{,*/}*.css'
-          ]
-        }
-      }
+      // By default, your `index.html` <!-- Usemin Block --> will take care of
+      // minification. This option is pre-configured if you do not wish to use
+      // Usemin blocks.
+      // dist: {
+      //   files: {
+      //     '<%= yeoman.dist %>/styles/main.css': [
+      //       '.tmp/styles/{,*/}*.css',
+      //       '<%= yeoman.app %>/styles/{,*/}*.css'
+      //     ]
+      //   }
+      // }
     },
     htmlmin: {
       dist: {
@@ -205,6 +230,61 @@ module.exports = function (grunt) {
           src: ['*.html', 'views/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
+      }
+    },
+    // Put files not handled in other tasks here
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            '*.{ico,png,txt}',
+            '.htaccess',
+            'components/**/*',
+            'images/{,*/}*.{gif,webp,svg}',
+            'styles/fonts/*',
+            'images/{,*/}*',//my addition
+            'styles/img/*' //my addition
+          ]
+        }, {
+          expand: true,
+          cwd: '.tmp/images',
+          dest: '<%= yeoman.dist %>/images',
+          src: [
+            'generated/*'
+          ]
+        }, { //this block added by me
+          expand: true,
+          flatten:true,
+          src: ['styles/font/*'],
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>/font/'
+        }]
+      }
+    },
+    concurrent: {
+      server: [
+        'coffee:dist',
+        'compass:server'
+      ],
+      test: [
+        'coffee',
+        'compass'
+      ],
+      dist: [
+        'coffee',
+        'compass:dist',
+        'imagemin',
+        'htmlmin'
+      ]
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true
       }
     },
     cdnify: {
@@ -230,83 +310,47 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
-    rev: {
-      dist: {
-        files: {
-          src: [
-            '<%= yeoman.dist %>/scripts/{,*/}*.js',
-            '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/styles/fonts/*'
-          ]
-        }
-      }
-    },
-    copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
-          src: [
-            '*.{ico,txt}',
-            '.htaccess',
-            'components/**/*',
-            'images/{,*/}*.{gif,webp}',
-            'images/{,*/}*',
-            'styles/img/*'
-          ]
-        },
-        {
-          expand: true,
-          flatten:true,
-          src: ['styles/font/*'],
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>/font/'
-        }]
-      }
     }
   });
 
-  grunt.renameTask('regarde', 'watch');
+  grunt.registerTask('server', function (target) {
+    if (target === 'dist') {
+      return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+    }
 
-  grunt.registerTask('server', [
-    'clean:server',
-    'coffee:dist',
-    'compass:server',
-    'livereload-start',
-    'connect:livereload',
-    'open',
-    'watch'
-  ]);
+    grunt.task.run([
+      'clean:server',
+      'concurrent:server', //coffee, compass
+      'connect:livereload',
+      'open',
+      'watch'
+    ]);
+  });
 
   grunt.registerTask('test', [
     'clean:server',
-    'jshint',
-    'coffee',
-    'compass',
+    'concurrent:test', //coffee, compass
     'connect:test',
     'karma'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
-    'coffee',
-    'compass:dist',
     'useminPrepare',
-    'imagemin',
-    'htmlmin',
+    'concurrent:dist', //coffee, compass, imagemin, htmlmin
     'concat',
     'copy',
-    'cssmin', //moving here seems to fix issue with icons not appearing (originally before htmlmin)
     'cdnify',
     'ngmin',
+    'cssmin',
     'uglify',
-    // 'rev', //bug with css not getting image urls replaced
+    'rev',
     'usemin'
   ]);
 
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('default', [
+    'jshint',
+    'test',
+    'build'
+  ]);
 };

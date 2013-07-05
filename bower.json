@@ -8,7 +8,7 @@
     "angular-resource": "latest",
     "angular-cookies": "latest",
     "angular-sanitize": "latest",
-    "jquery":"latest",
+    "jquery":"1.*",
     "angular-bootstrap": "latest",
     "angular-fire":"latest",
     "angular-ui-select2": "latest",
@@ -17,7 +17,7 @@
     "angular-moment":"latest"
   },
   "devDependencies": {
-    "angular-mocks": "~1.0.5",
-    "angular-scenario": "~1.0.5"
+    "angular-mocks": "~1.0.7",
+    "angular-scenario": "~1.0.7"
   }
 }
