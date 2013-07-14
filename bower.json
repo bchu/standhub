@@ -3,21 +3,22 @@
   "version": "0.0.1",
   "dependencies": {
     "angular": "https://github.com/bchu/bower-angular.git#1.1.5",
+    "jquery":"1.*",
     "json3": "~3.2.4",
     "es5-shim": "~2.0.8",
-    "angular-resource": "latest",
-    "angular-cookies": "latest",
-    "angular-sanitize": "latest",
-    "jquery":"latest",
-    "angular-bootstrap": "latest",
-    "angular-fire":"latest",
-    "angular-ui-select2": "latest",
-    "lodash":"latest",
-    "moment":"latest",
-    "angular-moment":"latest"
+    "angular-resource": "*",
+    "angular-cookies": "*",
+    "angular-sanitize": "*",
+    "angular-bootstrap": "*",
+    "lodash":"*",
+    "moment":"*",
+    "angular-fire":"*",
+    "angular-ui-select2": "*",
+    "angular-moment":"*"
+
   },
   "devDependencies": {
-    "angular-mocks": "~1.0.5",
-    "angular-scenario": "~1.0.5"
+    "angular-mocks": "~1.0.7",
+    "angular-scenario": "~1.0.7"
   }
 }
