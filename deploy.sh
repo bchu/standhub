@@ -17,6 +17,7 @@ cp CNAME gh_pages
 cd gh_pages
 git add .
 git add -u #adds untracked changes
+git add --all .
 DATE=$(date -u) #utc date, cannot have spaces next to equals operator
 git commit -m "Site updated at $DATE"
 git push origin gh-pages --force
