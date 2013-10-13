@@ -31,7 +31,6 @@ app.factory('Data',
   // data.forEachUser = function(callback) {
   //   debugger;
   //   for (var i = 0; i < data.allUsers.length; i++) {
-  //     // debugger;
   //     callback(data.allUsers[i]);
   //   }
   //   var listRef = new Firebase(data.fireUrl + 'users');
@@ -76,10 +75,11 @@ app.factory('Data',
     data.refreshRequestsRef.off();
     data.refreshRequestsRef = new Firebase(data.requestsUrl);
     data.refreshRequestsRef.on('child_added', function(snapshot) {
-      $rootScope.$log('fired!!!!');
       if (!data.user) {
         return;
       }
+      $rootScope.$log('refresh requests ref');
+      $rootScope.$apply(); //needed for digest to update
       var reqData = snapshot.val();
       reqData.refName = snapshot.name();
       // reqData.ref = snapshot.ref();
@@ -96,17 +96,14 @@ app.factory('Data',
       }
     });
     data.refreshRequestsRef.on('child_changed', function(snapshot) {
-      // debugger;
       var refName = snapshot.name();
       for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
         if (data.requestsFromYou[i].refName === refName) {
-      // debugger;
           data.requestsFromYou[i].targets = snapshot.val().targets;
         }
       }
       for (var i = data.requestsToYou.length-1; i >=0 ; i--) {
         if (data.requestsToYou[i].refName === refName) {
-      // debugger;
           data.requestsToYou[i].targets = snapshot.val().targets;
           //you declined someone's alert
           if (snapshot.val().targets[data.user.id]==='decline') {
@@ -114,10 +111,8 @@ app.factory('Data',
           }
         }
       }
-      // debugger;
     });
     data.refreshRequestsRef.on('child_removed', function(oldSnapshot) {
-      // debugger;
       var refName = oldSnapshot.name();
       for (var i = data.requestsFromYou.length-1; i >=0 ; i--) {
         if (data.requestsFromYou[i].refName === refName) {
