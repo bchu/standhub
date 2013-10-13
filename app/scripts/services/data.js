@@ -14,10 +14,11 @@ app.factory('Data',
   data.userRef;
   data.userUrl = data.fireUrl + 'users/';
   var usersRef = new Firebase(data.userUrl);
-  data.users = angularFireCollection(data.userUrl);
+  data.users = angularFireCollection(usersRef);
+
   data.requestsUrl = data.fireUrl + 'requests/';
-  data.requests = angularFireCollection(data.requestsUrl);
   var requestsRef = new Firebase(data.requestsUrl);
+  data.requests = angularFireCollection(requestsRef);
 
   // data.tags = [];
 
