@@ -3,7 +3,7 @@
 
 /* Status Controller */
 app.controller('StatusCtrl', ['$scope', 'Data', function ($scope, Data) {
-  $scope.userStatus = '';
+
   $scope.submitStatus = function(userStatus) {
     if (Data.userRef) {
       Data.userRef.child('status').set(userStatus);
@@ -17,9 +17,11 @@ app.controller('StatusCtrl', ['$scope', 'Data', function ($scope, Data) {
     backdropFade: true,
     dialogFade:true
   };
+
   $scope.open = function () {
     $scope.shouldBeOpen = true;
   };
+
   $scope.close = function () {
     if ($scope.shouldBeOpen) {
       $scope.shouldBeOpen = false;

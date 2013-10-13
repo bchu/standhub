@@ -5,9 +5,10 @@
 app.controller('LoginCtrl', ['$scope', 'Data', function($scope, Data) {
 
   $scope.loggedIn = false;
+
   $scope.$watchCollection(
-  function () {return Data.user;},
-  function (user) {
+  function() { return Data.user; },
+  function(user) {
 
     $scope.user = user;
 
