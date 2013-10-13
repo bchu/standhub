@@ -12,12 +12,15 @@ app.config(['$routeProvider', function($routeProvider) {
       redirectTo: '/'
     });
 }])
+.config(['$logProvider', function($logProvider) {
+  $logProvider.debugEnabled(true);
+}])
 .config(['$locationProvider', function($locationProvider) {
   // $locationProvider.html5Mode(true).hashPrefix('!');;
 }])
 .run(['$rootScope', '$routeParams', '$log', function($rootScope, $routeParams, $log) {
   $rootScope.$routeParams = $routeParams;
-  $rootScope.$log = $log;
+  $rootScope.$log = $log.debug;
 }])
 
 

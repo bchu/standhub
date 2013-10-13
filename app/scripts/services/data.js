@@ -3,8 +3,8 @@
 
 /* Services */
 app.factory('Data',
-  ['angularFire', 'angularFireCollection', '$rootScope', '$timeout',
-  function(angularFire, angularFireCollection, $rootScope, $timeout) {
+  ['angularFire', 'angularFireCollection', '$rootScope',
+  function(angularFire, angularFireCollection, $rootScope) {
 
   var data = {};
 
@@ -70,13 +70,13 @@ app.factory('Data',
   data.requestsToYou = [];
   data.refreshRequestsRef = new Firebase(data.requestsUrl);
   data.refreshRequests  = function() {
-    console.log('refresh requests');
+    $rootScope.$log('refresh requests');
     data.requestsFromYou = [];
     data.requestsToYou = [];
     data.refreshRequestsRef.off();
     data.refreshRequestsRef = new Firebase(data.requestsUrl);
     data.refreshRequestsRef.on('child_added', function(snapshot) {
-      console.log('fired!!!!');
+      $rootScope.$log('fired!!!!');
       if (!data.user) {
         return;
       }
@@ -145,7 +145,7 @@ app.factory('Data',
   data.authClient = new FirebaseSimpleLogin(new Firebase(data.fireUrl), function(error, user) {
     if (error) {
       // an error occurred while attempting login
-      console.log(error);
+      $rootScope.$log(error);
     } else if (user) {
       data.user = user;
       var oldUser = data.userFromId(user.id);
