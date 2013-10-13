@@ -142,7 +142,7 @@ app.factory('Data',
   };
 
   //handle auth
-  data.authClient = new FirebaseAuthClient(new Firebase(data.fireUrl), function(error, user) {
+  data.authClient = new FirebaseSimpleLogin(new Firebase(data.fireUrl), function(error, user) {
     if (error) {
       // an error occurred while attempting login
       console.log(error);
