@@ -6,21 +6,24 @@
   </div>
   <div class="box-content">
 
-    <form class="replyForm"method="post" action="">
+    <form class="replyForm" name="replyForm" ng-submit="submitRequest(tags,comment)">
       <fieldset>
         <label for="tag">Request help with:</label>
-        <textarea id="tag"
-              rows="1"
-              ui-select2="tagOptions"
-              ng-model="tags"></textarea>
+        <textarea id="tag" rows="1"
+                  ui-select2="tagOptions"
+                  ng-model="tags">
+        </textarea>
 
         <label for="comment">Comments/Ask Question:</label>
-        <textarea tabindex="3" class="input-xlarge span12" id="comment" ng-model="comment" name="body" rows="8" placeholder="Click here to reply"></textarea>
-        <div class="actions">
-          <button tabindex="3" type="submit" ng-click="submitRequest(tags,comment)" class="btn btn-large btn-success">Send request</button>
-        </div>
-      </fieldset>
+        <textarea tabindex="3" class="input-xlarge span12" id="comment" name="body" rows="8" placeholder="Click here to reply"
+                  ng-model="comment"></textarea>
 
+        <div class="actions">
+          <button tabindex="3" type="submit" class="btn btn-large btn-success">Send request</button>
+        </div>
+
+      </fieldset>
     </form>
   </div>
+
 </div>
