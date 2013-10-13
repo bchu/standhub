@@ -51,7 +51,7 @@ app.factory('Data',
     //find experts to match with and then push data to server
     var targets = {};
     var count = 0;
-    _.each(data.users, function(user) {
+    _(data.users).each(function(user) {
       if (_.contains(user.tags,obj.tag) && user.id !== data.user.id) {
         // targets.push({userId:user.id,response:null});
         targets[user.id] = 'pending'; //response, firebase doesn't like it if it's null
