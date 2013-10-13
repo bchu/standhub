@@ -2,26 +2,20 @@
 'use strict';
 
 /* Alert Controller */
-app.controller('AlertsCtrl', ['$scope', 'Data', '$timeout', function($scope, Data,$timeout) {
+app.controller('AlertsCtrl', ['$scope', 'Data', function($scope, Data) {
 
-  $scope.$watch(
-    function() {return Data.requestsToYou;},
+  $scope.requestsToYou = Data.requestsToYou;
+  $scope.requestsFromYou = Data.requestsFromYou;
+
+  $scope.$watch(function() {return Data.requestsToYou;},
     function(requestsToYou) {
       $scope.requestsToYou = requestsToYou;
   }, true);
 
-  $scope.$watch(
-    function() {return Data.requestsFromYou;},
+  $scope.$watch(function() {return Data.requestsFromYou;},
     function(requestsFromYou) {
       $scope.requestsFromYou = requestsFromYou;
   }, true);
-
-  // var callback = function() {
-  //   var d = Data;
-  //   console.log(d);
-  //   $timeout(callback, 3000);
-  // };
-  // $timeout(callback, 3000);
 
   //need to update to show accepted status
   $scope.accept = function(request) {
