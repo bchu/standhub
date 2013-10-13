@@ -1,0 +1,35 @@
+<div modal="shouldBeOpen" close="close()" options="opts">
+    <div class="modal-header">
+        <h1>Login</h1>
+    </div>
+    <div class="modal-body">
+      <form>
+         <div ng-switch on="loggedIn">
+          <button class="btn btn-large btn-primary"
+                  ng-switch-when="false"
+                  ng-click="facebookLogin()">
+            Login With Facebook
+          </button>
+          <span ng-switch-when="pending">Logging in...</span>
+          <span ng-switch-when="true">Welcome {{user.name}}. Now update your skills:</span>
+        </div>
+        <br>
+          <form>
+            <fieldset>
+              <label for="tags">Skills</label>
+              <textarea id="tags" rows="8" style="width:100%;"
+                        ui-select2="tagOptions"
+                        ng-model="tags">
+              </textarea>
+            </fieldset>
+          </form>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning cancel"
+                ng-click="addTags(tags);close()">
+          Submit Skills
+        </button>
+    </div>
+</div>
