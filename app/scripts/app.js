@@ -23,6 +23,8 @@ angular.module('services', []);
 
 // Modules
 angular.module('modules', [
+  'ngRoute',
+  'ngAnimate',
   'firebase',
   'ui.bootstrap',
   'ui.select2',
