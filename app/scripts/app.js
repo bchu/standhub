@@ -1,13 +1,32 @@
 'use strict';
 
-angular.module('standhubApp', ['firebase', 'ui.bootstrap','ui.select2', 'angularMoment'])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  }]);
+/* StandHub */
+angular.module('standhub', [
+  'filters',
+  'services',
+  'directives',
+  'controllers',
+  'modules'
+]);
+
+// Controllers
+angular.module('controllers', []);
+
+// Directives
+angular.module('directives', []);
+
+// Filters
+angular.module('filters', []);
+
+// Services
+angular.module('services', []);
+
+// Modules
+angular.module('modules', [
+  'ngRoute',
+  'ngAnimate',
+  'firebase',
+  'ui.bootstrap',
+  'ui.select2',
+  'angularMoment'
+]);

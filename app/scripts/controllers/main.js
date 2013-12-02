@@ -1,7 +1,10 @@
+;(function(app) {
 'use strict';
 
-angular.module('standhubApp')
-  .controller('MainCtrl', ['$scope', 'Data', function ($scope, Data) {
+/* Main Controller */
+app.controller('MainCtrl', ['$scope', 'Data', function($scope, Data) {
 
 
-  }]);
+}]);
+
+}(angular.module('controllers')));
